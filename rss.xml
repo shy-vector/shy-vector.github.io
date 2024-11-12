@@ -22,7 +22,7 @@
             <category term="Reverse" scheme="http://example.com/tags/Reverse/" />
             <category term="Misc" scheme="http://example.com/tags/Misc/" />
             <pubDate>Sun, 03 Nov 2024 21:00:00 +0800</pubDate>
-            <description><![CDATA[ &lt;h1 id=&#34;gift-RSA-题解&#34;&gt;&lt;a href=&#34;#gift-RSA-题解&#34; class=&#34;headerlink&#34; title=&#34;gift_RSA 题解&#34;&gt;&lt;/a&gt;gift_RSA 题解&lt;/h1&gt;&lt;h3 id=&#34;思路&#34;&gt;&lt;a href=&#34;#思路&#34; class=&#34;headerlink&#34; title=&#34;思路&#34;&gt;&lt;/a&gt;思路&lt;/h3&gt;&lt;p&gt;&lt;del&gt;注意到&lt;/del&gt;您用私钥（按流程来说是公钥）加密，公钥（按流程来说是私钥）公之于众：&lt;br&gt;$$&lt;br&gt;ed \equiv 1 ,(\text{mod} ,\varphi(n) )&lt;br&gt;$$&lt;br&gt;$e$和$d$&lt;strong&gt;互为&lt;/strong&gt;模$\varphi(n)$意义下的逆元，因此公私这个概念是&lt;strong&gt;相对&lt;/strong&gt;的。&lt;/p&gt;
+            <description><![CDATA[ &lt;h1 id=&#34;gift-RSA-题解&#34;&gt;&lt;a href=&#34;#gift-RSA-题解&#34; class=&#34;headerlink&#34; title=&#34;gift_RSA 题解&#34;&gt;&lt;/a&gt;gift_RSA 题解&lt;/h1&gt;&lt;h3 id=&#34;思路&#34;&gt;&lt;a href=&#34;#思路&#34; class=&#34;headerlink&#34; title=&#34;思路&#34;&gt;&lt;/a&gt;思路&lt;/h3&gt;&lt;p&gt;&lt;del&gt;注意到&lt;/del&gt;您用私钥（按流程来说是公钥）加密，公钥（按流程来说是私钥）公之于众：&lt;br&gt;$$ ed \equiv 1 ,(\text{mod} ,\varphi(n) ) $$&lt;br&gt;$e$ 和 $d$ &lt;strong&gt;互为&lt;/strong&gt;模 $\varphi(n)$ 意义下的逆元，因此公私这个概念是&lt;strong&gt;相对&lt;/strong&gt;的。&lt;/p&gt;
 &lt;p&gt;于是代码中的&lt;code&gt;e&lt;/code&gt;其实就已经是私钥了，直接解密即可。&lt;/p&gt;
 &lt;h3 id=&#34;代码&#34;&gt;&lt;a href=&#34;#代码&#34; class=&#34;headerlink&#34; title=&#34;代码&#34;&gt;&lt;/a&gt;代码&lt;/h3&gt;&lt;pre&gt;&lt;code class=&#34;python&#34;&gt;from Crypto.Util.number import *
 from secret import flag
@@ -162,11 +162,11 @@ b_str = &amp;quot;01011000010100110100001101010100010001100111101101011001001100
 print(long_to_bytes(int(b_str, 2))) # 二进制解读str转int，int转bytes
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;答案-5&#34;&gt;&lt;a href=&#34;#答案-5&#34; class=&#34;headerlink&#34; title=&#34;答案&#34;&gt;&lt;/a&gt;答案&lt;/h3&gt;&lt;p&gt;&lt;code&gt;XSCTF&amp;#123;Y0u_W3r3_7he_5h4d0w_t0_my_1ifE-AlanWalker&amp;#125;&lt;/code&gt;&lt;/p&gt;
-&lt;h1 id=&#34;Easy-congruence-题解&#34;&gt;&lt;a href=&#34;#Easy-congruence-题解&#34; class=&#34;headerlink&#34; title=&#34;Easy_congruence 题解&#34;&gt;&lt;/a&gt;Easy_congruence 题解&lt;/h1&gt;&lt;h3 id=&#34;思路-6&#34;&gt;&lt;a href=&#34;#思路-6&#34; class=&#34;headerlink&#34; title=&#34;思路&#34;&gt;&lt;/a&gt;思路&lt;/h3&gt;&lt;p&gt;分析代码，得知&lt;br&gt;$$&lt;br&gt;mg \equiv c ,(\text{mod},p)&lt;br&gt;$$&lt;br&gt;&lt;del&gt;物体的重力在模p意义下与光速相等。&lt;/del&gt;&lt;/p&gt;
+&lt;h1 id=&#34;Easy-congruence-题解&#34;&gt;&lt;a href=&#34;#Easy-congruence-题解&#34; class=&#34;headerlink&#34; title=&#34;Easy_congruence 题解&#34;&gt;&lt;/a&gt;Easy_congruence 题解&lt;/h1&gt;&lt;h3 id=&#34;思路-6&#34;&gt;&lt;a href=&#34;#思路-6&#34; class=&#34;headerlink&#34; title=&#34;思路&#34;&gt;&lt;/a&gt;思路&lt;/h3&gt;&lt;p&gt;分析代码，得知&lt;br&gt;$$ mg \equiv c ,(\text{mod},p) $$&lt;br&gt;&lt;del&gt;物体的重力在模p意义下与光速相等。&lt;/del&gt;&lt;/p&gt;
 &lt;p&gt;这是个线性同余方程，要想求解$m$，可以考虑两边乘上$g$的逆元。&lt;/p&gt;
-&lt;p&gt;But！$g$的逆元不一定存在！逆元存在的条件是$\text{gcd}(g, p) &amp;#x3D;1$。&lt;/p&gt;
-&lt;p&gt;&lt;del&gt;经检验，&lt;/del&gt;$\text{gcd}(g, p) \ne 1$，该咋办？这里我们用一种方法可以回避这个问题：将同余方程两边同除以$\text{gcd}(g, p)$。&lt;/p&gt;
-&lt;p&gt;&lt;del&gt;经检验，&lt;/del&gt;$\text{gcd}(g, p) ,|, c$​，于是得到&lt;br&gt;$$&lt;br&gt;m \cdot \dfrac{g}{\text{gcd}(g, p)} \equiv \dfrac{c}{\text{gcd}(g, p)} ,(\text{mod} , \dfrac{p}{\text{gcd}(g, p)})&lt;br&gt;$$&lt;br&gt;这下就$\text{gcd}(\dfrac{g}{\text{gcd}(g, p)}, \dfrac{p}{\text{gcd}(g, p)}) &amp;#x3D;1$​啦，两边乘逆元得&lt;br&gt;$$&lt;br&gt;m \equiv \dfrac{c}{\text{gcd}(g, p)} \cdot \left(\dfrac{g}{\text{gcd}(g, p)}\right)^{-1},(\text{mod} , \dfrac{p}{\text{gcd}(g, p)})&lt;br&gt;$$&lt;/p&gt;
+&lt;p&gt;But！$g$ 的逆元不一定存在！逆元存在的条件是$\text{gcd}(g, p) &amp;#x3D;1$。&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;经检验，&lt;/del&gt; $\text{gcd}(g, p) \ne 1$ ，该咋办？这里我们用一种方法可以回避这个问题：将同余方程两边同除以$\text{gcd}(g, p)$。&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;经检验，&lt;/del&gt; $\text{gcd}(g, p) ,|, c$ ，于是得到&lt;br&gt;$$ m \cdot \dfrac{g}{\text{gcd}(g, p)} \equiv \dfrac{c}{\text{gcd}(g, p)} ,(\text{mod} , \dfrac{p}{\text{gcd}(g, p)}) $$&lt;br&gt;这下就 $\text{gcd}(\dfrac{g}{\text{gcd}(g, p)}, \dfrac{p}{\text{gcd}(g, p)}) &amp;#x3D;1$ 啦，两边乘逆元得&lt;br&gt;$$ m \equiv \dfrac{c}{\text{gcd}(g, p)} \cdot \left(\dfrac{g}{\text{gcd}(g, p)}\right)^{-1},(\text{mod} , \dfrac{p}{\text{gcd}(g, p)}) $$&lt;/p&gt;
 &lt;h3 id=&#34;代码-4&#34;&gt;&lt;a href=&#34;#代码-4&#34; class=&#34;headerlink&#34; title=&#34;代码&#34;&gt;&lt;/a&gt;代码&lt;/h3&gt;&lt;pre&gt;&lt;code class=&#34;python&#34;&gt;from Crypto.Util.number import *
 import gmpy2
 # from secret import flag
