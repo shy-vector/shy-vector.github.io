@@ -1,0 +1,189 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"><meta name="theme-color" content="#222"><meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"><meta name="renderer" content="webkit"><link rel="icon" type="image/ico" sizes="32x32" href="/assets/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="alternate" href="/rss.xml" title="Blogs~" type="application/rss+xml"><link rel="alternate" href="/atom.xml" title="Blogs~" type="application/atom+xml"><link rel="alternate" type="application/json" title="Blogs~" href="http://shy-vector.github.io/feed.json"><link rel="preconnect" href="https://s4.zstatic.net"><link rel="preconnect" href="https://at.alicdn.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CFredericka%20the%20Great:400,400italic,700,700italic%7CNoto%20Serif%20JP:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic%7CInconsolata:400,400italic,700,700italic&amp;display=swap&amp;subset=latin,latin-ext" media="none" onload="this.media='all'"><link rel="stylesheet" href="/css/app.css?v=0.4.11"><link rel="modulepreload" href="/js/chunk-2EZZF5BX.js"><link rel="modulepreload" href="/js/chunk-3QGRG5LW.js"><link rel="modulepreload" href="/js/chunk-R4VL7MAR.js"><link rel="modulepreload" href="/js/copy-tex-3SEHBGDT.js"><link rel="modulepreload" href="/js/index.esm-SQPRSBAT.js"><link rel="modulepreload" href="/js/post-Q6PCDY32.js"><link rel="modulepreload" href="/js/quicklink-72GVJXVR.js"><link rel="modulepreload" href="/js/siteInit.js"><link rel="preload" href="https://ooo.0x0.ooo/2024/10/07/O4w3Ws.webp" as="image" fetchpriority="high"><link rel="preload" href="https://ooo.0x0.ooo/2024/10/07/O4wCgK.webp" as="image" fetchpriority="high"><link rel="preload" href="https://ooo.0x0.ooo/2024/10/07/ODMTtX.webp" as="image" fetchpriority="high"><link rel="preload" href="https://ooo.0x0.ooo/2024/10/07/O4wjGP.webp" as="image" fetchpriority="high"><link rel="preload" href="https://ooo.0x0.ooo/2024/10/07/ODMbbx.webp" as="image" fetchpriority="high"><link rel="preload" href="https://ooo.0x0.ooo/2024/10/07/ODMxVp.webp" as="image" fetchpriority="high"><meta name="keywords" content="Linear Algebra,"><meta name="description" content="(ง •_•)ง"><link rel="canonical" href="http://shy-vector.github.io/2025/02/04/Vector%20Space%20(LADR%20Chapter%201)/"><title>Vector Space (LADR Chapter 1)</title><meta name="generator" content="Hexo 7.3.0"></head><body itemscope="" itemtype="http://schema.org/WebPage"><div id="loading"><div class="cat"><div class="body"></div><div class="head"><div class="face"></div></div><div class="foot"><div class="tummy-end"></div><div class="bottom"></div><div class="legs left"></div><div class="legs right"></div></div><div class="paw"><div class="hands left"></div><div class="hands right"></div></div></div></div><div id="container"><header id="header" itemscope="" itemtype="http://schema.org/WPHeader"><div class="inner"><div id="brand"><div class="pjax"><h1 itemprop="name headline">Vector Space (LADR Chapter 1)</h1><div class="meta"><span class="item" title="创建时间：2025-02-04 04:30:00"><span class="icon"><i class="ic i-calendar"></i></span><span class="text">发表于</span><time itemprop="dateCreated datePublished" datetime="2025-02-04T04:30:00+08:00">2025-02-04</time></span><span class="item" title="本文字数"><span class="icon"><i class="ic i-pen"></i></span><span class="text">本文字数</span><span>7.1k</span><span class="text">字</span></span><span class="item" title="阅读时长"><span class="icon"><i class="ic i-clock"></i></span><span class="text">阅读时长</span><span>6 分钟</span></span></div></div></div><nav id="nav"><div class="inner"><div class="toggle"><div class="lines" aria-label="切换导航栏"><span class="line"></span><span class="line"></span><span class="line"></span></div></div><ul class="menu"><li class="item title"><a href="/" rel="start">Shy_Vector</a></li></ul><ul class="right" id="rightNav"><li class="item theme"><i class="ic i-sun"></i></li><li class="item search"><i class="ic i-search"></i></li></ul></div></nav></div><div class="pjax" id="imgs"><ul><li class="item" style="background-image: url(&quot;https://ooo.0x0.ooo/2024/10/07/O4w3Ws.webp&quot;);"></li><li class="item" style="background-image: url(&quot;https://ooo.0x0.ooo/2024/10/07/O4wCgK.webp&quot;);"></li><li class="item" style="background-image: url(&quot;https://ooo.0x0.ooo/2024/10/07/ODMTtX.webp&quot;);"></li><li class="item" style="background-image: url(&quot;https://ooo.0x0.ooo/2024/10/07/O4wjGP.webp&quot;);"></li><li class="item" style="background-image: url(&quot;https://ooo.0x0.ooo/2024/10/07/ODMbbx.webp&quot;);"></li><li class="item" style="background-image: url(&quot;https://ooo.0x0.ooo/2024/10/07/ODMxVp.webp&quot;);"></li></ul></div></header><div id="waves"><svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path></defs><g class="parallax"><use xlink:href="#gentle-wave" x="48" y="0"></use><use xlink:href="#gentle-wave" x="48" y="3"></use><use xlink:href="#gentle-wave" x="48" y="5"></use><use xlink:href="#gentle-wave" x="48" y="7"></use></g></svg></div><main><div class="inner"><div class="pjax" id="main"><div class="article wrap"><div class="breadcrumb" itemlistelement="" itemscope="" itemtype="https://schema.org/BreadcrumbList"><i class="ic i-home"></i><span><a href="/">首页</a></span></div><article class="post block" itemscope="itemscope" itemtype="http://schema.org/Article" lang="zh-CN"><link itemprop="mainEntityOfPage" href="http://shy-vector.github.io/2025/02/04/Vector%20Space%20(LADR%20Chapter%201)/"><span hidden="hidden" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person"><meta itemprop="image" content="/assets/avatar.jpg"><meta itemprop="name" content="Shy_Vector"><meta itemprop="description" content="~(∠·ω< )⌒★, (ง •_•)ง"></span><span hidden="hidden" itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Organization"><meta itemprop="name" content="Blogs~"></span><div class="body md" itemprop="articleBody"><h1 id="向量空间"><a href="#向量空间" class="headerlink" title="向量空间"></a>向量空间</h1><h2 id="mathbf-R-n-和-mathbf-C-n"><a href="#mathbf-R-n-和-mathbf-C-n" class="headerlink" title="$\mathbf R^n$和$\mathbf C^n$"></a>$\mathbf R^n$和$\mathbf C^n$</h2><h3 id="mathbf-F"><a href="#mathbf-F" class="headerlink" title="$\mathbf F$"></a>$\mathbf F$</h3><p>记号 $\mathbf F$ 一般代表 $\mathbf R$ 或 $\mathbf C$，字母 $\mathbf F$ 源于<strong>域（field）</strong>。称 $\mathbf F$ 中的元素为<strong>标量（scalar）</strong>。</p>
+<h3 id="mathbf-F-n"><a href="#mathbf-F-n" class="headerlink" title="$\mathbf F^n$"></a>$\mathbf F^n$</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>$$<br>\mathbf F^n = {(x_1, \cdots, x_n) : x_k \in \mathbf F,, k = 1, \cdots, n}<br>$$</p>
+<p>这里 $\mathbf F$ 不一定代表 $\mathbf R$ 或 $\mathbf C$，任何集合均可。记加法恒等元<br>$$<br>0 = (0, \cdots, 0)<br>$$<br>依照上下文判断是 $\mathbf F$ 中的加法恒等元还是 $\mathbf F^n$ 中的加法恒等元。</p>
+<h4 id="加法、加法交换律、加法逆元"><a href="#加法、加法交换律、加法逆元" class="headerlink" title="加法、加法交换律、加法逆元"></a>加法、加法交换律、加法逆元</h4><p>$\mathbf F^n$ 中的加法定义为对应坐标相加：<br>$$<br>(x_1, \cdots, x_n) + (y_1, \cdots, y_n) = (x_1 + y_1, \cdots, x_n + y_n)<br>$$<br>$\mathbf F^n$ 中的加法满足交换律：<br>$$<br>\forall, x, y \in \mathbf F^n,: x + y = y + x<br>$$<br>对于 $\mathbf F^n$ 中的 $x$ 和 $y$，若 $x + y = 0$，则称 $x$，$y$ 互为加法逆元，记 $y = -x$。容易证明对于 $\mathbf F^n$ 中任意的 $x$，其加法逆元存在且唯一。</p>
+<h4 id="标量乘法"><a href="#标量乘法" class="headerlink" title="标量乘法"></a>标量乘法</h4><p>若 $\lambda \in \mathbf F$，则 $\mathbf F^n$ 中的标量乘法定义为：<br>$$<br>\lambda(x_1, \cdots, x_n) = (\lambda x_1, \cdots, \lambda x_n)<br>$$</p>
+<h2 id="向量空间-1"><a href="#向量空间-1" class="headerlink" title="向量空间"></a>向量空间</h2><h3 id="集合上的加法和标量乘法"><a href="#集合上的加法和标量乘法" class="headerlink" title="集合上的加法和标量乘法"></a>集合上的加法和标量乘法</h3><p>定义集合 $V$ 上的加法是一种映射 $f : (u, v) \rightarrow w$，其中 $u, v, w \in V$，记 $w = u + v$。</p>
+<p>定义集合 $V$ 上的标量乘法是一种映射 $f : (\lambda, v) \rightarrow w$，其中 $\lambda \in \mathbf F$，$v, w \in V$，记 $w = \lambda v$。</p>
+<p>这里加法和标量乘法都是封闭的。</p>
+<h3 id="向量空间-2"><a href="#向量空间-2" class="headerlink" title="向量空间"></a>向量空间</h3><p>若集合 $V$ 定义了加法和 $\mathbf F$ 上的标量乘法，并且 $V$ 及其所有元素、加法、$\mathbf F$ 上的标量乘法满足：</p>
+<ol>
+<li>集合中存在<strong>加法恒等元</strong>（identity）$\exists,0 \in V, \forall, v \in V, v + 0 = v$；</li>
+<li>所有元素均存在<strong>加法逆元</strong>（inverse）$\forall, v \in V, \exist,w \in V, v + w = 0$；</li>
+<li><strong>加法交换律</strong>（commutativity）$\forall, u, v \in V,: u + v = v + u$；</li>
+<li><strong>加法结合律</strong>（associativity）$\forall, u, v, w\in V, (u + v) + w = u + (v + w)$；</li>
+<li>标量集中存在<strong>标量乘法恒等元</strong> $\exists,1\in \mathbf F, \forall,v \in V, 1v=v$；</li>
+<li><strong>标量乘法结合律</strong> $\forall, a, b \in \mathbf F, \forall, v \in V, a(bv)=(ab)v$；</li>
+<li><strong>标量乘法左分配律</strong>（distributive properties）$\forall,\lambda\in\mathbf F, \forall, u, v\in V, \lambda(u + v) = \lambda u + \lambda v$；</li>
+<li><strong>标量乘法右分配律</strong> $\forall,\lambda,\mu\in\mathbf F, \forall, v\in V, (\lambda + \mu)v = \lambda v + \mu v$，</li>
+</ol>
+<p>则称集合 $V$ 是 $\mathbf F$ 上的<strong>向量空间</strong>。向量空间中的元素被称为<strong>向量</strong>，或被称为<strong>点</strong>。</p>
+<p>一般研究 $\mathbf R$ 上的向量空间，即<strong>实向量空间</strong>，也就是标量为实数的情况。</p>
+<p>最小的向量空间是 ${0}$，其中 $0$ 是加法恒等元。<strong>所有的向量空间必含加法恒等元</strong>。</p>
+<blockquote>
+<p>注意：空集 $\oslash$ 不是向量空间，因为 $\oslash$ 不满足向量空间定义的第一个条件，即不存在加法恒等元（注意存在量词放在命题句首）。</p>
+</blockquote>
+<p>容易证明，<strong>加法恒等元唯一。</strong></p>
+<p>容易证明，<strong>加法逆元唯一。</strong>因此记号 $-v$ 和 $u - v$ 可以使用。</p>
+<blockquote>
+<ol>
+<li>标量 $0$ 与任意向量相乘必得加法恒等元，即 $0v = 0$；</li>
+</ol>
+<blockquote>
+<p>证明：（标量乘法的右分配律）<br>$$<br>0v = (0 + 0)v = 0v + 0v<br>$$<br>两边加上 $0v$ 的逆元得（加法逆元存在，加法结合律）<br>$$<br>0v + (-0v) = 0v + (0v + (-0v))<br>$$<br>即（加法逆元的定义）<br>$$<br>0 = 0v<br>$$</p>
+</blockquote>
+<ol start="2">
+<li>标量 $-1$ 与任意向量相乘必得该向量的加法逆元，即 $(-1)v = -v$；</li>
+<li>任意标量与加法恒等元相乘必得加法恒等元，即 $\lambda 0 = 0$。</li>
+</ol>
+</blockquote>
+<h3 id="值函数空间"><a href="#值函数空间" class="headerlink" title="值函数空间"></a>值函数空间</h3><h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><p>$$<br>\mathbf F^S = {f \mid f:S\rightarrow \mathbf F}<br>$$</p>
+<h4 id="值函数集上的加法"><a href="#值函数集上的加法" class="headerlink" title="值函数集上的加法"></a>值函数集上的加法</h4><p>对于任意的 $f, g \in \mathbf F^S$，若函数 $h \in \mathbf F^S$ 满足<br>$$<br>\forall, x \in S,: h(x) = f(x) + g(x)<br>$$<br>则称 $h$ 是 $f$ 与 $g$ 的<strong>和</strong>，记作 $f + g$。</p>
+<blockquote>
+<p>注意：等式左边是 $\mathbf F^S$ 上的加法，等式右边是 $\mathbf F$ 上的加法。</p>
+</blockquote>
+<h4 id="值函数集上的标量乘法"><a href="#值函数集上的标量乘法" class="headerlink" title="值函数集上的标量乘法"></a>值函数集上的标量乘法</h4><p>对于任意的 $\lambda \in \mathbf F$ 与 $f \in \mathbf F^S$，若函数 $g \in \mathbf F^S$ 满足<br>$$<br>\forall, x \in S,: g(x) = \lambda f(x)<br>$$<br>则称 $g$ 是 $f$ 的<strong>乘积</strong>，记作 $\lambda f$。</p>
+<h4 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h4><p>容易证明，值函数集是向量空间。</p>
+<h2 id="向量空间的子空间"><a href="#向量空间的子空间" class="headerlink" title="向量空间的子空间"></a>向量空间的子空间</h2><p>在向量空间中，相比对任意子集，我们对子空间更感兴趣。</p>
+<h3 id="子空间"><a href="#子空间" class="headerlink" title="子空间"></a>子空间</h3><h4 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h4><p>设 $U$，$V$ 均为 $\mathbf F$ 上的向量空间，且</p>
+<ol>
+<li>$U \sub V$；</li>
+<li>$U$ 的加法、标量乘法与 $V$ 的加法、标量乘法相同（即向量空间的八个条件相同）；</li>
+<li>$U$ 的加法恒等元与 $V$ 的加法恒等元相同。</li>
+</ol>
+<p>则称 $U$ 是 $V$ 的<strong>子空间</strong>，最简单的子空间是 ${0}$。</p>
+<blockquote>
+<p>注意：仅条件 2 成立并不能保证加法恒等元相同（只保证各自的加法恒等元存在。两个向量空间分别有各自的加法恒等元，比如向量空间 $U$ 围绕着 $0_u$ 存在（$\exists, 0_u \in U$），向量空间 $V$ 围绕着 $0_v$ 存在（$\exists, 0_v \in U$）），不过可以保证各自的乘法恒等元保持一致（因为都是 $\exists,1 \in \mathbf F$）。</p>
+<p>但事实上，条件 3 可由条件 1 和条件 2 共同导出：</p>
+<blockquote>
+<p>在 $U$ 中，<br>$$<br>u + 0_u = u<br>$$<br>因为 $U \sub V$，所以 $u, 0_u \in V$，故 $0_u = 0_v$。</p>
+</blockquote>
+</blockquote>
+<h4 id="判定方法"><a href="#判定方法" class="headerlink" title="判定方法"></a>判定方法</h4><p> 集合 $U$ 是向量空间 $V$ 的子空间，当且仅当</p>
+<ol>
+<li>$U \sub V$；</li>
+<li>父集的加法恒等元在子集中，即 $0_v \in U$；</li>
+<li>子集的加法、标量乘法（映射）分别是父集的加法、标量乘法（映射）的子集；</li>
+<li>在父集的加法下，子集是封闭的（closed），即 $\forall, u_1, u_2 \in U, u_1 + u_2 \in U$；</li>
+<li>在父集的标量乘法下，子集也是封闭的，即 $\forall, \lambda \in F, \forall, u \in U, \lambda u \in U$；</li>
+</ol>
+<blockquote>
+<p>必要性（$\Rightarrow$）是显然的，下面证明<strong>充分性（$\Leftarrow$）</strong>：$U \sub V$ 直接被证明，下面证明八个条件：</p>
+<ol>
+<li><p>$U$ 的加法恒等元存在：对于任意的 $u \in U$，都有 $u \in V$ (条件 1)，因此在向量空间 $V$ 中，<br>$$<br>u + 0_v = u<br>$$<br>而 $0_v \in U$（条件 2），故 $0_u = 0_v$；</p>
+</li>
+<li><p>$U$ 中所有元素均存在加法逆元：对于任意的 $u \in U$，都有 $(-1)u \in U$（条件 5），即 $-u \in U$；</p>
+</li>
+<li><p>剩余的条件均可由条件 3 配合条件 4，5 直接导出。</p>
+</li>
+</ol>
+</blockquote>
+<h4 id="一些子空间的例子"><a href="#一些子空间的例子" class="headerlink" title="一些子空间的例子"></a>一些子空间的例子</h4><ol>
+<li>极限为 0 的数列的线性组合，其极限仍为 0，即 ${z : \lim z = 0}$ 是 $\mathbf C^\infty$ 的子空间；</li>
+<li>连续函数的线性组合必连续，即 ${f \in \mathbf R^D : f \text{ is continuous}}$ 是 $\mathbf R^D$ 的子空间；</li>
+<li>可微函数的线性组合必可微，即 ${f \in \mathbf R^D : f \text{ is differentiable}}$ 是 $\mathbf R^D$ 的子空间；</li>
+</ol>
+<h3 id="子空间的和"><a href="#子空间的和" class="headerlink" title="子空间的和"></a>子空间的和</h3><p>子空间的<strong>并</strong>往往就不是子空间了，因此我们对子空间的和更感兴趣。</p>
+<h4 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h4><p>设 $V_1, \cdots, V_m$ 均为 $V$ 的子空间，定义它们的<strong>和</strong><br>$$<br>V_1 + \cdots + V_m = {v_1 + \cdots + v_m : v_i \in V_i,, i = 1, \cdots, m}<br>$$</p>
+<h4 id="性质-1"><a href="#性质-1" class="headerlink" title="性质"></a>性质</h4><ol>
+<li><p>$V_1 + \cdots + V_m$ 是 $V$ 的子空间；</p>
+</li>
+<li><p>$V_1 + \cdots + V_m$ 是包含 $V_1, \cdots, V_m$ 的 $V$ 的最小子空间。</p>
+<p>也就是说，若子空间 $U$ 包含 $V_1, \cdots, V_m$，则必包含 $V_1 + \cdots + V_m$。</p>
+<p>也就是说，包含了 $V_1, \cdots, V_m$ 的 $U$ 是子空间的必要条件是：$U$ 包含 $V_1 + \cdots + V_m$。</p>
+</li>
+</ol>
+<blockquote>
+<p>性质 1 易证，性质 2 类似于「包含若干子集的最小子集正是这些子集的并」，因为「包含若干子集的子集也都包含这些子集的并」。</p>
+<p>形象的解释就是：挖去 $V_1 + \cdots + V_m$ 中任意子集都会导出不封闭或者不包含 $V_i$（仅能形象解释，无法证明）。正式的<strong>证明</strong>是：对任意的 $i$，取<br>$$<br>\forall, v_i =0_1+\cdots+v_i+\cdots+0_m \in V_1 + \cdots + V_m<br>$$<br>故 $V_i \sub V_1 + \cdots + V_m$，即 $V_1 + \cdots + V_m$ 是包含 $V_1, \cdots, V_m$ 的 $V$ 的子空间。</p>
+<p>设 $V$ 的任何一个包含 $V_i$ 的子空间 $U$，则 $U$ 必包含 $V_1 + \cdots + V_m$，不凭别的，就凭 $U$ 包含了所有 $V_i$（也就是说，所有 $v_i$ 也都在 $U$ 里），并且 $U$ 是封闭的（结合前面提到的「所有 $v_i$ 也都在 $U$ 里」，有限个 $v_i$ 的和（也就是 $V_1 + \cdots + V_m$ 的元素）封闭在 $U$ 内）。</p>
+<p>形象地说，$U$ 由于自身的封闭性，不得不接受 $V_i$ 共创的所有“产物”，从而包含了 $V_1 + \cdots + V_m$。</p>
+</blockquote>
+<ol start="3">
+<li>$U + U = U$；</li>
+</ol>
+<blockquote>
+<p>由 $U$ 的封闭性直接导出。</p>
+</blockquote>
+<ol start="4">
+<li><strong>子空间和的交换律</strong>：$U + W = W + U$；</li>
+<li><strong>子空间和的结合律</strong>：$(V_1 + V_2) + V_3 = V_1 + (V_2 + V_3)$；</li>
+</ol>
+<blockquote>
+<p>由向量空间的加法交换律和加法结合律直接导出。</p>
+</blockquote>
+<ol start="6">
+<li><strong>子空间和的加法恒等元</strong>：零子空间 ${(0_1, \cdots, 0_m)} = {(0, \cdots, 0)}$；</li>
+<li>只有零子空间有加法逆元。</li>
+</ol>
+<blockquote>
+<p>由性质 3 及反证法可推出。</p>
+</blockquote>
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><table>
+<thead>
+<tr>
+<th>$U$</th>
+<th>$W$</th>
+<th>$U+W$</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>${(x, 0, 0)\in\mathbf F^3}$</td>
+<td>${(0, y, 0)\in\mathbf F^3}$</td>
+<td>${(x, y, 0)\in\mathbf F^3}$</td>
+</tr>
+<tr>
+<td>${(x, x, y, y)\in\mathbf F^4}$</td>
+<td>${(x, x, x, y)\in\mathbf F^4}$</td>
+<td>${(x, x, y, z)\in\mathbf F^3}$</td>
+</tr>
+</tbody></table>
+<h3 id="子空间的直和"><a href="#子空间的直和" class="headerlink" title="子空间的直和"></a>子空间的直和</h3><h4 id="定义-4"><a href="#定义-4" class="headerlink" title="定义"></a>定义</h4><p>设 $V_1, \cdots, V_m$ 均为 $V$ 的子空间，如果 $V_1 + \cdots + V_m$ 中的每个元素都能用 $v_1 + \cdots + v_m$ 这个形式唯一地表示出来，则称 $V_1 + \cdots + V_m$ 为<strong>直和</strong>，记作 $V_1 \oplus \cdots \oplus V_m$。</p>
+<p>在 3.2.3 中表格的第一行的例子正是直和，第二行的例子不是直和。</p>
+<h4 id="性质-2"><a href="#性质-2" class="headerlink" title="性质"></a>性质</h4><ol>
+<li>$V_1 + \cdots + V_m$ 是直和，当且仅当用 $v_1 + \cdots + v_m$ 表示 $0$ 的方式是唯一的；</li>
+<li>$U + W$ 是直和，当且仅当 $U \cap W = {0}$。</li>
+</ol>
+<blockquote>
+<p>性质 1 不难证明，向量做差结合封闭性即可得证。</p>
+<p>性质 2 类似于「子集的不相交并」，下面证明性质 2：</p>
+<p><strong>必要性（$\Rightarrow$）</strong>：任取 $v \in U \cap W$，则 $v \in U$，于是我们根据 $v$ 找到了 $0$ 的一个表示是 $0 = v + (-v)$；又因为 $v \in W$，也就是说我们又找到了 0 的一个表示是 $0 = (-v) + v$，由于 $0$ 的表示唯一，<br>$$<br>\begin{cases}<br>v = -v \<br>-v = v<br>\end{cases}<br>$$<br>解得 $v = 0$。也就是说从 $U \cap W$ 取出的元素都是 $0$，于是 $U \cap W = {0}$。</p>
+<p><strong>充分性（$\Leftarrow$）</strong>：根据性质 1，只需证明 $0$ 的表示 $0 = u + w$ 是唯一的。</p>
+<p>显然 $w = -u \in U$（$U$ 的封闭性），又因为 $w \in W$，因此 $w \in U \cap W$，故 $w = 0$，$u = -w = 0$，这说明在 $0$ 的表示中，$u$ 和 $w$ 只能为 $0$，是唯一的。</p>
+<p>注意：性质 2 仅使用于两个子空间的情况，原因显然。</p>
+</blockquote>
+<div class="tags"><a href="/tags/Linear-Algebra/" rel="tag"><i class="ic i-tag"></i>Linear Algebra</a><a href="/tags/LADR/" rel="tag"><i class="ic i-tag"></i>LADR</a></div></div><footer><div class="meta"><span class="item"><span class="icon"><i class="ic i-calendar-check"></i></span><span class="text">更新于</span><time title="修改时间：2025-02-04 04:31:23" itemprop="dateModified" datetime="2025-02-04T04:31:23+08:00">2025-02-04</time></span></div><div class="reward"><button><i class="ic i-heartbeat"></i>赞赏</button><p>请我喝[茶]~(￣▽￣)~*</p><div id="qr"><div><img loading="lazy" data-src="/assets/wechatpay.webp" alt="Shy_Vector 微信支付"><p>微信支付</p></div><div><img loading="lazy" data-src="/assets/alipay.webp" alt="Shy_Vector 支付宝"><p>支付宝</p></div></div></div><div id="copyright"><ul><li class="author"><strong>本文作者：</strong>Shy_Vector<i class="ic i-at"><em>@</em></i>Blogs~</li><li class="link"><strong>本文链接：</strong><a href="http://shy-vector.github.io/2025/02/04/Vector%20Space%20(LADR%20Chapter%201)/" title="Vector Space (LADR Chapter 1)">http://shy-vector.github.io/2025/02/04/Vector Space (LADR Chapter 1)/</a></li><li class="license"><strong>版权声明：</strong>本站所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li></ul></div></footer></article></div><div class="post-nav"><div class="item left"><a href="/2025/01/24/Magic%20Bits%20Operation/" rel="prev" itemprop="url" data-background-image="https://ooo.0x0.ooo/2024/10/07/O4wXtg.webp" title="Magic Bits Operation"><span class="type">上一篇</span><h3>Magic Bits Operation</h3></a></div><div class="item right"></div></div><div class="wrap" id="comments"></div></div><div id="sidebar"><div class="inner"><div class="panels"><div class="inner"><div class="contents panel pjax" data-title="文章目录"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4"><span class="toc-number">1.</span> <span class="toc-text">向量空间</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#mathbf-R-n-%E5%92%8C-mathbf-C-n"><span class="toc-number">1.1.</span> <span class="toc-text">$\mathbf R^n$和$\mathbf C^n$</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mathbf-F"><span class="toc-number">1.1.1.</span> <span class="toc-text">$\mathbf F$</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mathbf-F-n"><span class="toc-number">1.1.2.</span> <span class="toc-text">$\mathbf F^n$</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A0%E6%B3%95%E3%80%81%E5%8A%A0%E6%B3%95%E4%BA%A4%E6%8D%A2%E5%BE%8B%E3%80%81%E5%8A%A0%E6%B3%95%E9%80%86%E5%85%83"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">加法、加法交换律、加法逆元</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%87%E9%87%8F%E4%B9%98%E6%B3%95"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">标量乘法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4-1"><span class="toc-number">1.2.</span> <span class="toc-text">向量空间</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E4%B8%8A%E7%9A%84%E5%8A%A0%E6%B3%95%E5%92%8C%E6%A0%87%E9%87%8F%E4%B9%98%E6%B3%95"><span class="toc-number">1.2.1.</span> <span class="toc-text">集合上的加法和标量乘法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4-2"><span class="toc-number">1.2.2.</span> <span class="toc-text">向量空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%80%BC%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4"><span class="toc-number">1.2.3.</span> <span class="toc-text">值函数空间</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-1"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%80%BC%E5%87%BD%E6%95%B0%E9%9B%86%E4%B8%8A%E7%9A%84%E5%8A%A0%E6%B3%95"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">值函数集上的加法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%80%BC%E5%87%BD%E6%95%B0%E9%9B%86%E4%B8%8A%E7%9A%84%E6%A0%87%E9%87%8F%E4%B9%98%E6%B3%95"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">值函数集上的标量乘法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%A7%E8%B4%A8"><span class="toc-number">1.2.3.4.</span> <span class="toc-text">性质</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E7%9A%84%E5%AD%90%E7%A9%BA%E9%97%B4"><span class="toc-number">1.3.</span> <span class="toc-text">向量空间的子空间</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E7%A9%BA%E9%97%B4"><span class="toc-number">1.3.1.</span> <span class="toc-text">子空间</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-2"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A4%E5%AE%9A%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.1.2.</span> <span class="toc-text">判定方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E5%AD%90%E7%A9%BA%E9%97%B4%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="toc-number">1.3.1.3.</span> <span class="toc-text">一些子空间的例子</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E7%A9%BA%E9%97%B4%E7%9A%84%E5%92%8C"><span class="toc-number">1.3.2.</span> <span class="toc-text">子空间的和</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-3"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%A7%E8%B4%A8-1"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">性质</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-number">1.3.2.3.</span> <span class="toc-text">例子</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E7%A9%BA%E9%97%B4%E7%9A%84%E7%9B%B4%E5%92%8C"><span class="toc-number">1.3.3.</span> <span class="toc-text">子空间的直和</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-4"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%A7%E8%B4%A8-2"><span class="toc-number">1.3.3.2.</span> <span class="toc-text">性质</span></a></li></ol></li></ol></li></ol></li></ol></div><div class="related panel pjax" data-title="系列文章"></div><div class="overview panel" data-title="站点概览"><div class="author" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person"><img class="image" loading="lazy" decoding="async" itemprop="image" alt="Shy_Vector" src="/assets/avatar.webp"><p class="name" itemprop="name">Shy_Vector</p><div class="description" itemprop="description">(ง •_•)ง</div></div><nav class="state"><div class="item posts"><a href="/archives/"><span class="count">9</span><span class="name">文章</span></a></div><div class="item tags"><a href="/tags/"><span class="count">18</span><span class="name">标签</span></a></div></nav><div class="social"><a target="_blank" rel="noopener" href="https://github.com/shy-vector" class="item github" title="https://github.com/shy-vector"><i class="ic i-github"></i></a><a target="_blank" rel="noopener" href="https://x.com/ShyVector44402" class="item twitter" title="https://x.com/ShyVector44402"><i class="ic i-twitter"></i></a><a target="_blank" rel="noopener" href="https://www.zhihu.com/people/Shy_Vector" class="item zhihu" title="https://www.zhihu.com/people/Shy_Vector"><i class="ic i-zhihu"></i></a><a href="/1950473706@qq.com" class="item email" title="1950473706@qq.com"><i class="ic i-envelope"></i></a></div><div class="menu"><li class="item"><a href="/" rel="section"><i class="ic i-home"></i>首页</a></li></div></div></div></div><ul id="quick"><li class="prev pjax"></li><li class="up"><i class="ic i-arrow-up"></i></li><li class="down"><i class="ic i-arrow-down"></i></li><li class="next pjax"><a href="/2025/01/24/Magic%20Bits%20Operation/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a></li><li class="percent"></li></ul></div></div><div class="dimmer"></div></div></main><footer id="footer"><div class="inner"><div class="widgets"><div class="rpost pjax"><h2>随机文章</h2><ul><li class="item"><div class="breadcrumb"></div><span><a href="/2024/10/06/GSLA%20Chapter%202/">GSLA Chapter 2 Problem Set (Optional)</a></span></li><li class="item"><div class="breadcrumb"></div><span><a href="/2024/11/03/XSCTF2024%20%E5%88%9D%E8%B5%9B%20shy_vector's%20WriteUp/">XSCTF2024 初赛 shy_vector's WriteUp</a></span></li><li class="item"><div class="breadcrumb"></div><span><a href="/2024/12/03/Baby%20Number%20Theory/">Baby Number Theory</a></span></li><li class="item"><div class="breadcrumb"></div><span><a href="/2025/02/04/Vector%20Space%20(LADR%20Chapter%201)/">Vector Space (LADR Chapter 1)</a></span></li><li class="item"><div class="breadcrumb"></div><span><a href="/2024/10/05/GSLA%20Chapter%201/">GSLA Chapter 1 Problem Set (Optional)</a></span></li><li class="item"><div class="breadcrumb"></div><span><a href="/2024/11/26/%E8%83%8C%E5%8C%85DP/">背包DP</a></span></li><li class="item"><div class="breadcrumb"></div><span><a href="/2024/09/20/Dijkstra%E7%AE%97%E6%B3%95%E6%AD%A3%E7%A1%AE%E6%80%A7%E7%9A%84%E8%AF%81%E6%98%8E/">Dijkstra算法正确性的证明</a></span></li><li class="item"><div class="breadcrumb"></div><span><a href="/2024/09/20/hello-world/">Hello World</a></span></li><li class="item"><div class="breadcrumb"></div><span><a href="/2025/01/24/Magic%20Bits%20Operation/">Magic Bits Operation</a></span></li></ul></div><div class="rpost pjax"><h2>最新评论</h2></div></div><div class="status"><div class="copyright">© 2010 -<span itemprop="copyrightYear">2025</span><span class="with-love"><i class="ic i-sakura rotate"></i></span><span class="author" itemprop="copyrightHolder">Shy_Vector @ Shy_Vector</span></div><div class="count"><span class="post-meta-item-icon"><i class="ic i-chart-area"></i></span><span title="站点总字数">57k 字</span><span class="post-meta-divider"> | </span><span class="post-meta-item-icon"><i class="ic i-coffee"></i></span><span title="站点阅读时长">52 分钟</span></div><div class="powered-by">基于 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> &amp; Theme.<a target="_blank" rel="noopener" href="https://github.com/theme-shoka-x/hexo-theme-shokaX/">ShokaX</a></div></div></div></footer></div><script data-config="" type="text/javascript">var LOCAL = {
+    ispost: true,
+        path: `2025/02/04/Vector Space (LADR Chapter 1)/`,
+        favicon: {
+        show: `（●´3｀●）やれやれだぜ`,
+        hide: `(´Д｀)大変だ！`
+    },
+    search: {
+        placeholder: "文章搜索",
+        empty: "关于 「 ${query} 」，什么也没搜到",
+        stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    copy_tex: true,
+    katex: true,
+    mermaid: false,
+    audio: undefined,
+    fancybox: true,
+    nocopy: false,
+    outime: true,
+    template: `<div class="note warning"><p><span class="label warning">文章时效性提示</span><br>这是一篇发布于 {{publish}} 天前，最后一次更新在 {{updated}} 天前的文章，部分信息可能已经发生改变，请注意甄别。</p></div>`,
+    quiz: {
+        choice: `单选题`,
+        multiple: `多选题`,
+        true_false: `判断题`,
+        essay: `问答题`,
+        gap_fill: `填空题`,
+        mistake: `错题备注`
+    },
+    ignores: [
+        (uri) => uri.includes('#'),
+        (uri) => new RegExp(LOCAL.path + '$').test(uri),
+            []
+    ]
+};
+</script><script src="https://s4.zstatic.net/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous" fetchpriority="high"></script><script src="https://s4.zstatic.net/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous" fetchpriority="high"></script><script src="/js/siteInit.js?v=0.4.11" type="module" fetchpriority="high" defer=""></script></body></html>

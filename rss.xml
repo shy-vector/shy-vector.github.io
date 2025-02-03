@@ -10,8 +10,171 @@
         </author>
         <description>(ง •_•)ง</description>
         <language>zh-CN</language>
-        <pubDate>Fri, 24 Jan 2025 16:20:00 +0800</pubDate>
-        <lastBuildDate>Fri, 24 Jan 2025 16:20:00 +0800</lastBuildDate>
+        <pubDate>Tue, 04 Feb 2025 04:30:00 +0800</pubDate>
+        <lastBuildDate>Tue, 04 Feb 2025 04:30:00 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">http://shy-vector.github.io/2025/02/04/Vector%20Space%20(LADR%20Chapter%201)/</guid>
+            <title>Vector Space (LADR Chapter 1)</title>
+            <link>http://shy-vector.github.io/2025/02/04/Vector%20Space%20(LADR%20Chapter%201)/</link>
+            <category term="Linear Algebra" scheme="http://shy-vector.github.io/tags/Linear-Algebra/" />
+            <category term="LADR" scheme="http://shy-vector.github.io/tags/LADR/" />
+            <pubDate>Tue, 04 Feb 2025 04:30:00 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;向量空间&#34;&gt;&lt;a href=&#34;#向量空间&#34; class=&#34;headerlink&#34; title=&#34;向量空间&#34;&gt;&lt;/a&gt;向量空间&lt;/h1&gt;&lt;h2 id=&#34;mathbf-R-n-和-mathbf-C-n&#34;&gt;&lt;a href=&#34;#mathbf-R-n-和-mathbf-C-n&#34; class=&#34;headerlink&#34; title=&#34;$\mathbf R^n$和$\mathbf C^n$&#34;&gt;&lt;/a&gt;$\mathbf R^n$和$\mathbf C^n$&lt;/h2&gt;&lt;h3 id=&#34;mathbf-F&#34;&gt;&lt;a href=&#34;#mathbf-F&#34; class=&#34;headerlink&#34; title=&#34;$\mathbf F$&#34;&gt;&lt;/a&gt;$\mathbf F$&lt;/h3&gt;&lt;p&gt;记号 $\mathbf F$ 一般代表 $\mathbf R$ 或 $\mathbf C$，字母 $\mathbf F$ 源于&lt;strong&gt;域（field）&lt;/strong&gt;。称 $\mathbf F$ 中的元素为&lt;strong&gt;标量（scalar）&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;mathbf-F-n&#34;&gt;&lt;a href=&#34;#mathbf-F-n&#34; class=&#34;headerlink&#34; title=&#34;$\mathbf F^n$&#34;&gt;&lt;/a&gt;$\mathbf F^n$&lt;/h3&gt;&lt;h4 id=&#34;定义&#34;&gt;&lt;a href=&#34;#定义&#34; class=&#34;headerlink&#34; title=&#34;定义&#34;&gt;&lt;/a&gt;定义&lt;/h4&gt;&lt;p&gt;$$&lt;br&gt;\mathbf F^n &amp;#x3D; {(x_1, \cdots, x_n) : x_k \in \mathbf F,, k &amp;#x3D; 1, \cdots, n}&lt;br&gt;$$&lt;/p&gt;
+&lt;p&gt;这里 $\mathbf F$ 不一定代表 $\mathbf R$ 或 $\mathbf C$，任何集合均可。记加法恒等元&lt;br&gt;$$&lt;br&gt;0 &amp;#x3D; (0, \cdots, 0)&lt;br&gt;$$&lt;br&gt;依照上下文判断是 $\mathbf F$ 中的加法恒等元还是 $\mathbf F^n$ 中的加法恒等元。&lt;/p&gt;
+&lt;h4 id=&#34;加法、加法交换律、加法逆元&#34;&gt;&lt;a href=&#34;#加法、加法交换律、加法逆元&#34; class=&#34;headerlink&#34; title=&#34;加法、加法交换律、加法逆元&#34;&gt;&lt;/a&gt;加法、加法交换律、加法逆元&lt;/h4&gt;&lt;p&gt;$\mathbf F^n$ 中的加法定义为对应坐标相加：&lt;br&gt;$$&lt;br&gt;(x_1, \cdots, x_n) + (y_1, \cdots, y_n) &amp;#x3D; (x_1 + y_1, \cdots, x_n + y_n)&lt;br&gt;$$&lt;br&gt;$\mathbf F^n$ 中的加法满足交换律：&lt;br&gt;$$&lt;br&gt;\forall, x, y \in \mathbf F^n,: x + y &amp;#x3D; y + x&lt;br&gt;$$&lt;br&gt;对于 $\mathbf F^n$ 中的 $x$ 和 $y$，若 $x + y &amp;#x3D; 0$，则称 $x$，$y$ 互为加法逆元，记 $y &amp;#x3D; -x$。容易证明对于 $\mathbf F^n$ 中任意的 $x$，其加法逆元存在且唯一。&lt;/p&gt;
+&lt;h4 id=&#34;标量乘法&#34;&gt;&lt;a href=&#34;#标量乘法&#34; class=&#34;headerlink&#34; title=&#34;标量乘法&#34;&gt;&lt;/a&gt;标量乘法&lt;/h4&gt;&lt;p&gt;若 $\lambda \in \mathbf F$，则 $\mathbf F^n$ 中的标量乘法定义为：&lt;br&gt;$$&lt;br&gt;\lambda(x_1, \cdots, x_n) &amp;#x3D; (\lambda x_1, \cdots, \lambda x_n)&lt;br&gt;$$&lt;/p&gt;
+&lt;h2 id=&#34;向量空间-1&#34;&gt;&lt;a href=&#34;#向量空间-1&#34; class=&#34;headerlink&#34; title=&#34;向量空间&#34;&gt;&lt;/a&gt;向量空间&lt;/h2&gt;&lt;h3 id=&#34;集合上的加法和标量乘法&#34;&gt;&lt;a href=&#34;#集合上的加法和标量乘法&#34; class=&#34;headerlink&#34; title=&#34;集合上的加法和标量乘法&#34;&gt;&lt;/a&gt;集合上的加法和标量乘法&lt;/h3&gt;&lt;p&gt;定义集合 $V$ 上的加法是一种映射 $f : (u, v) \rightarrow w$，其中 $u, v, w \in V$，记 $w &amp;#x3D; u + v$。&lt;/p&gt;
+&lt;p&gt;定义集合 $V$ 上的标量乘法是一种映射 $f : (\lambda, v) \rightarrow w$，其中 $\lambda \in \mathbf F$，$v, w \in V$，记 $w &amp;#x3D; \lambda v$。&lt;/p&gt;
+&lt;p&gt;这里加法和标量乘法都是封闭的。&lt;/p&gt;
+&lt;h3 id=&#34;向量空间-2&#34;&gt;&lt;a href=&#34;#向量空间-2&#34; class=&#34;headerlink&#34; title=&#34;向量空间&#34;&gt;&lt;/a&gt;向量空间&lt;/h3&gt;&lt;p&gt;若集合 $V$ 定义了加法和 $\mathbf F$ 上的标量乘法，并且 $V$ 及其所有元素、加法、$\mathbf F$ 上的标量乘法满足：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;集合中存在&lt;strong&gt;加法恒等元&lt;/strong&gt;（identity）$\exists,0 \in V, \forall, v \in V, v + 0 &amp;#x3D; v$；&lt;/li&gt;
+&lt;li&gt;所有元素均存在&lt;strong&gt;加法逆元&lt;/strong&gt;（inverse）$\forall, v \in V, \exist,w \in V, v + w &amp;#x3D; 0$；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;加法交换律&lt;/strong&gt;（commutativity）$\forall, u, v \in V,: u + v &amp;#x3D; v + u$；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;加法结合律&lt;/strong&gt;（associativity）$\forall, u, v, w\in V, (u + v) + w &amp;#x3D; u + (v + w)$；&lt;/li&gt;
+&lt;li&gt;标量集中存在&lt;strong&gt;标量乘法恒等元&lt;/strong&gt; $\exists,1\in \mathbf F, \forall,v \in V, 1v&amp;#x3D;v$；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;标量乘法结合律&lt;/strong&gt; $\forall, a, b \in \mathbf F, \forall, v \in V, a(bv)&amp;#x3D;(ab)v$；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;标量乘法左分配律&lt;/strong&gt;（distributive properties）$\forall,\lambda\in\mathbf F, \forall, u, v\in V, \lambda(u + v) &amp;#x3D; \lambda u + \lambda v$；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;标量乘法右分配律&lt;/strong&gt; $\forall,\lambda,\mu\in\mathbf F, \forall, v\in V, (\lambda + \mu)v &amp;#x3D; \lambda v + \mu v$，&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;则称集合 $V$ 是 $\mathbf F$ 上的&lt;strong&gt;向量空间&lt;/strong&gt;。向量空间中的元素被称为&lt;strong&gt;向量&lt;/strong&gt;，或被称为&lt;strong&gt;点&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;一般研究 $\mathbf R$ 上的向量空间，即&lt;strong&gt;实向量空间&lt;/strong&gt;，也就是标量为实数的情况。&lt;/p&gt;
+&lt;p&gt;最小的向量空间是 ${0}$，其中 $0$ 是加法恒等元。&lt;strong&gt;所有的向量空间必含加法恒等元&lt;/strong&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：空集 $\oslash$ 不是向量空间，因为 $\oslash$ 不满足向量空间定义的第一个条件，即不存在加法恒等元（注意存在量词放在命题句首）。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;容易证明，&lt;strong&gt;加法恒等元唯一。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;容易证明，&lt;strong&gt;加法逆元唯一。&lt;/strong&gt;因此记号 $-v$ 和 $u - v$ 可以使用。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;标量 $0$ 与任意向量相乘必得加法恒等元，即 $0v &amp;#x3D; 0$；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;证明：（标量乘法的右分配律）&lt;br&gt;$$&lt;br&gt;0v &amp;#x3D; (0 + 0)v &amp;#x3D; 0v + 0v&lt;br&gt;$$&lt;br&gt;两边加上 $0v$ 的逆元得（加法逆元存在，加法结合律）&lt;br&gt;$$&lt;br&gt;0v + (-0v) &amp;#x3D; 0v + (0v + (-0v))&lt;br&gt;$$&lt;br&gt;即（加法逆元的定义）&lt;br&gt;$$&lt;br&gt;0 &amp;#x3D; 0v&lt;br&gt;$$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;标量 $-1$ 与任意向量相乘必得该向量的加法逆元，即 $(-1)v &amp;#x3D; -v$；&lt;/li&gt;
+&lt;li&gt;任意标量与加法恒等元相乘必得加法恒等元，即 $\lambda 0 &amp;#x3D; 0$。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;值函数空间&#34;&gt;&lt;a href=&#34;#值函数空间&#34; class=&#34;headerlink&#34; title=&#34;值函数空间&#34;&gt;&lt;/a&gt;值函数空间&lt;/h3&gt;&lt;h4 id=&#34;定义-1&#34;&gt;&lt;a href=&#34;#定义-1&#34; class=&#34;headerlink&#34; title=&#34;定义&#34;&gt;&lt;/a&gt;定义&lt;/h4&gt;&lt;p&gt;$$&lt;br&gt;\mathbf F^S &amp;#x3D; {f \mid f:S\rightarrow \mathbf F}&lt;br&gt;$$&lt;/p&gt;
+&lt;h4 id=&#34;值函数集上的加法&#34;&gt;&lt;a href=&#34;#值函数集上的加法&#34; class=&#34;headerlink&#34; title=&#34;值函数集上的加法&#34;&gt;&lt;/a&gt;值函数集上的加法&lt;/h4&gt;&lt;p&gt;对于任意的 $f, g \in \mathbf F^S$，若函数 $h \in \mathbf F^S$ 满足&lt;br&gt;$$&lt;br&gt;\forall, x \in S,: h(x) &amp;#x3D; f(x) + g(x)&lt;br&gt;$$&lt;br&gt;则称 $h$ 是 $f$ 与 $g$ 的&lt;strong&gt;和&lt;/strong&gt;，记作 $f + g$。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：等式左边是 $\mathbf F^S$ 上的加法，等式右边是 $\mathbf F$ 上的加法。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;值函数集上的标量乘法&#34;&gt;&lt;a href=&#34;#值函数集上的标量乘法&#34; class=&#34;headerlink&#34; title=&#34;值函数集上的标量乘法&#34;&gt;&lt;/a&gt;值函数集上的标量乘法&lt;/h4&gt;&lt;p&gt;对于任意的 $\lambda \in \mathbf F$ 与 $f \in \mathbf F^S$，若函数 $g \in \mathbf F^S$ 满足&lt;br&gt;$$&lt;br&gt;\forall, x \in S,: g(x) &amp;#x3D; \lambda f(x)&lt;br&gt;$$&lt;br&gt;则称 $g$ 是 $f$ 的&lt;strong&gt;乘积&lt;/strong&gt;，记作 $\lambda f$。&lt;/p&gt;
+&lt;h4 id=&#34;性质&#34;&gt;&lt;a href=&#34;#性质&#34; class=&#34;headerlink&#34; title=&#34;性质&#34;&gt;&lt;/a&gt;性质&lt;/h4&gt;&lt;p&gt;容易证明，值函数集是向量空间。&lt;/p&gt;
+&lt;h2 id=&#34;向量空间的子空间&#34;&gt;&lt;a href=&#34;#向量空间的子空间&#34; class=&#34;headerlink&#34; title=&#34;向量空间的子空间&#34;&gt;&lt;/a&gt;向量空间的子空间&lt;/h2&gt;&lt;p&gt;在向量空间中，相比对任意子集，我们对子空间更感兴趣。&lt;/p&gt;
+&lt;h3 id=&#34;子空间&#34;&gt;&lt;a href=&#34;#子空间&#34; class=&#34;headerlink&#34; title=&#34;子空间&#34;&gt;&lt;/a&gt;子空间&lt;/h3&gt;&lt;h4 id=&#34;定义-2&#34;&gt;&lt;a href=&#34;#定义-2&#34; class=&#34;headerlink&#34; title=&#34;定义&#34;&gt;&lt;/a&gt;定义&lt;/h4&gt;&lt;p&gt;设 $U$，$V$ 均为 $\mathbf F$ 上的向量空间，且&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;$U \sub V$；&lt;/li&gt;
+&lt;li&gt;$U$ 的加法、标量乘法与 $V$ 的加法、标量乘法相同（即向量空间的八个条件相同）；&lt;/li&gt;
+&lt;li&gt;$U$ 的加法恒等元与 $V$ 的加法恒等元相同。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;则称 $U$ 是 $V$ 的&lt;strong&gt;子空间&lt;/strong&gt;，最简单的子空间是 ${0}$。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：仅条件 2 成立并不能保证加法恒等元相同（只保证各自的加法恒等元存在。两个向量空间分别有各自的加法恒等元，比如向量空间 $U$ 围绕着 $0_u$ 存在（$\exists, 0_u \in U$），向量空间 $V$ 围绕着 $0_v$ 存在（$\exists, 0_v \in U$）），不过可以保证各自的乘法恒等元保持一致（因为都是 $\exists,1 \in \mathbf F$）。&lt;/p&gt;
+&lt;p&gt;但事实上，条件 3 可由条件 1 和条件 2 共同导出：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在 $U$ 中，&lt;br&gt;$$&lt;br&gt;u + 0_u &amp;#x3D; u&lt;br&gt;$$&lt;br&gt;因为 $U \sub V$，所以 $u, 0_u \in V$，故 $0_u &amp;#x3D; 0_v$。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;判定方法&#34;&gt;&lt;a href=&#34;#判定方法&#34; class=&#34;headerlink&#34; title=&#34;判定方法&#34;&gt;&lt;/a&gt;判定方法&lt;/h4&gt;&lt;p&gt; 集合 $U$ 是向量空间 $V$ 的子空间，当且仅当&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;$U \sub V$；&lt;/li&gt;
+&lt;li&gt;父集的加法恒等元在子集中，即 $0_v \in U$；&lt;/li&gt;
+&lt;li&gt;子集的加法、标量乘法（映射）分别是父集的加法、标量乘法（映射）的子集；&lt;/li&gt;
+&lt;li&gt;在父集的加法下，子集是封闭的（closed），即 $\forall, u_1, u_2 \in U, u_1 + u_2 \in U$；&lt;/li&gt;
+&lt;li&gt;在父集的标量乘法下，子集也是封闭的，即 $\forall, \lambda \in F, \forall, u \in U, \lambda u \in U$；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;必要性（$\Rightarrow$）是显然的，下面证明&lt;strong&gt;充分性（$\Leftarrow$）&lt;/strong&gt;：$U \sub V$ 直接被证明，下面证明八个条件：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;$U$ 的加法恒等元存在：对于任意的 $u \in U$，都有 $u \in V$ (条件 1)，因此在向量空间 $V$ 中，&lt;br&gt;$$&lt;br&gt;u + 0_v &amp;#x3D; u&lt;br&gt;$$&lt;br&gt;而 $0_v \in U$（条件 2），故 $0_u &amp;#x3D; 0_v$；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;$U$ 中所有元素均存在加法逆元：对于任意的 $u \in U$，都有 $(-1)u \in U$（条件 5），即 $-u \in U$；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;剩余的条件均可由条件 3 配合条件 4，5 直接导出。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;一些子空间的例子&#34;&gt;&lt;a href=&#34;#一些子空间的例子&#34; class=&#34;headerlink&#34; title=&#34;一些子空间的例子&#34;&gt;&lt;/a&gt;一些子空间的例子&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;极限为 0 的数列的线性组合，其极限仍为 0，即 ${z : \lim z &amp;#x3D; 0}$ 是 $\mathbf C^\infty$ 的子空间；&lt;/li&gt;
+&lt;li&gt;连续函数的线性组合必连续，即 ${f \in \mathbf R^D : f \text{ is continuous}}$ 是 $\mathbf R^D$ 的子空间；&lt;/li&gt;
+&lt;li&gt;可微函数的线性组合必可微，即 ${f \in \mathbf R^D : f \text{ is differentiable}}$ 是 $\mathbf R^D$ 的子空间；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;子空间的和&#34;&gt;&lt;a href=&#34;#子空间的和&#34; class=&#34;headerlink&#34; title=&#34;子空间的和&#34;&gt;&lt;/a&gt;子空间的和&lt;/h3&gt;&lt;p&gt;子空间的&lt;strong&gt;并&lt;/strong&gt;往往就不是子空间了，因此我们对子空间的和更感兴趣。&lt;/p&gt;
+&lt;h4 id=&#34;定义-3&#34;&gt;&lt;a href=&#34;#定义-3&#34; class=&#34;headerlink&#34; title=&#34;定义&#34;&gt;&lt;/a&gt;定义&lt;/h4&gt;&lt;p&gt;设 $V_1, \cdots, V_m$ 均为 $V$ 的子空间，定义它们的&lt;strong&gt;和&lt;/strong&gt;&lt;br&gt;$$&lt;br&gt;V_1 + \cdots + V_m &amp;#x3D; {v_1 + \cdots + v_m : v_i \in V_i,, i &amp;#x3D; 1, \cdots, m}&lt;br&gt;$$&lt;/p&gt;
+&lt;h4 id=&#34;性质-1&#34;&gt;&lt;a href=&#34;#性质-1&#34; class=&#34;headerlink&#34; title=&#34;性质&#34;&gt;&lt;/a&gt;性质&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;$V_1 + \cdots + V_m$ 是 $V$ 的子空间；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;$V_1 + \cdots + V_m$ 是包含 $V_1, \cdots, V_m$ 的 $V$ 的最小子空间。&lt;/p&gt;
+&lt;p&gt;也就是说，若子空间 $U$ 包含 $V_1, \cdots, V_m$，则必包含 $V_1 + \cdots + V_m$。&lt;/p&gt;
+&lt;p&gt;也就是说，包含了 $V_1, \cdots, V_m$ 的 $U$ 是子空间的必要条件是：$U$ 包含 $V_1 + \cdots + V_m$。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;性质 1 易证，性质 2 类似于「包含若干子集的最小子集正是这些子集的并」，因为「包含若干子集的子集也都包含这些子集的并」。&lt;/p&gt;
+&lt;p&gt;形象的解释就是：挖去 $V_1 + \cdots + V_m$ 中任意子集都会导出不封闭或者不包含 $V_i$（仅能形象解释，无法证明）。正式的&lt;strong&gt;证明&lt;/strong&gt;是：对任意的 $i$，取&lt;br&gt;$$&lt;br&gt;\forall, v_i &amp;#x3D;0_1+\cdots+v_i+\cdots+0_m \in V_1 + \cdots + V_m&lt;br&gt;$$&lt;br&gt;故 $V_i \sub V_1 + \cdots + V_m$，即 $V_1 + \cdots + V_m$ 是包含 $V_1, \cdots, V_m$ 的 $V$ 的子空间。&lt;/p&gt;
+&lt;p&gt;设 $V$ 的任何一个包含 $V_i$ 的子空间 $U$，则 $U$ 必包含 $V_1 + \cdots + V_m$，不凭别的，就凭 $U$ 包含了所有 $V_i$（也就是说，所有 $v_i$ 也都在 $U$ 里），并且 $U$ 是封闭的（结合前面提到的「所有 $v_i$ 也都在 $U$ 里」，有限个 $v_i$ 的和（也就是 $V_1 + \cdots + V_m$ 的元素）封闭在 $U$ 内）。&lt;/p&gt;
+&lt;p&gt;形象地说，$U$ 由于自身的封闭性，不得不接受 $V_i$ 共创的所有“产物”，从而包含了 $V_1 + \cdots + V_m$。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;$U + U &amp;#x3D; U$；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;由 $U$ 的封闭性直接导出。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;&lt;strong&gt;子空间和的交换律&lt;/strong&gt;：$U + W &amp;#x3D; W + U$；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;子空间和的结合律&lt;/strong&gt;：$(V_1 + V_2) + V_3 &amp;#x3D; V_1 + (V_2 + V_3)$；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;由向量空间的加法交换律和加法结合律直接导出。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol start=&#34;6&#34;&gt;
+&lt;li&gt;&lt;strong&gt;子空间和的加法恒等元&lt;/strong&gt;：零子空间 ${(0_1, \cdots, 0_m)} &amp;#x3D; {(0, \cdots, 0)}$；&lt;/li&gt;
+&lt;li&gt;只有零子空间有加法逆元。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;由性质 3 及反证法可推出。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;例子&#34;&gt;&lt;a href=&#34;#例子&#34; class=&#34;headerlink&#34; title=&#34;例子&#34;&gt;&lt;/a&gt;例子&lt;/h4&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;$U$&lt;/th&gt;
+&lt;th&gt;$W$&lt;/th&gt;
+&lt;th&gt;$U+W$&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td&gt;${(x, 0, 0)\in\mathbf F^3}$&lt;/td&gt;
+&lt;td&gt;${(0, y, 0)\in\mathbf F^3}$&lt;/td&gt;
+&lt;td&gt;${(x, y, 0)\in\mathbf F^3}$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;${(x, x, y, y)\in\mathbf F^4}$&lt;/td&gt;
+&lt;td&gt;${(x, x, x, y)\in\mathbf F^4}$&lt;/td&gt;
+&lt;td&gt;${(x, x, y, z)\in\mathbf F^3}$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+&lt;h3 id=&#34;子空间的直和&#34;&gt;&lt;a href=&#34;#子空间的直和&#34; class=&#34;headerlink&#34; title=&#34;子空间的直和&#34;&gt;&lt;/a&gt;子空间的直和&lt;/h3&gt;&lt;h4 id=&#34;定义-4&#34;&gt;&lt;a href=&#34;#定义-4&#34; class=&#34;headerlink&#34; title=&#34;定义&#34;&gt;&lt;/a&gt;定义&lt;/h4&gt;&lt;p&gt;设 $V_1, \cdots, V_m$ 均为 $V$ 的子空间，如果 $V_1 + \cdots + V_m$ 中的每个元素都能用 $v_1 + \cdots + v_m$ 这个形式唯一地表示出来，则称 $V_1 + \cdots + V_m$ 为&lt;strong&gt;直和&lt;/strong&gt;，记作 $V_1 \oplus \cdots \oplus V_m$。&lt;/p&gt;
+&lt;p&gt;在 3.2.3 中表格的第一行的例子正是直和，第二行的例子不是直和。&lt;/p&gt;
+&lt;h4 id=&#34;性质-2&#34;&gt;&lt;a href=&#34;#性质-2&#34; class=&#34;headerlink&#34; title=&#34;性质&#34;&gt;&lt;/a&gt;性质&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;$V_1 + \cdots + V_m$ 是直和，当且仅当用 $v_1 + \cdots + v_m$ 表示 $0$ 的方式是唯一的；&lt;/li&gt;
+&lt;li&gt;$U + W$ 是直和，当且仅当 $U \cap W &amp;#x3D; {0}$。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;性质 1 不难证明，向量做差结合封闭性即可得证。&lt;/p&gt;
+&lt;p&gt;性质 2 类似于「子集的不相交并」，下面证明性质 2：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;必要性（$\Rightarrow$）&lt;/strong&gt;：任取 $v \in U \cap W$，则 $v \in U$，于是我们根据 $v$ 找到了 $0$ 的一个表示是 $0 &amp;#x3D; v + (-v)$；又因为 $v \in W$，也就是说我们又找到了 0 的一个表示是 $0 &amp;#x3D; (-v) + v$，由于 $0$ 的表示唯一，&lt;br&gt;$$&lt;br&gt;\begin{cases}&lt;br&gt;v &amp;#x3D; -v \&lt;br&gt;-v &amp;#x3D; v&lt;br&gt;\end{cases}&lt;br&gt;$$&lt;br&gt;解得 $v &amp;#x3D; 0$。也就是说从 $U \cap W$ 取出的元素都是 $0$，于是 $U \cap W &amp;#x3D; {0}$。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;充分性（$\Leftarrow$）&lt;/strong&gt;：根据性质 1，只需证明 $0$ 的表示 $0 &amp;#x3D; u + w$ 是唯一的。&lt;/p&gt;
+&lt;p&gt;显然 $w &amp;#x3D; -u \in U$（$U$ 的封闭性），又因为 $w \in W$，因此 $w \in U \cap W$，故 $w &amp;#x3D; 0$，$u &amp;#x3D; -w &amp;#x3D; 0$，这说明在 $0$ 的表示中，$u$ 和 $w$ 只能为 $0$，是唯一的。&lt;/p&gt;
+&lt;p&gt;注意：性质 2 仅使用于两个子空间的情况，原因显然。&lt;/p&gt;
+&lt;/blockquote&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">http://shy-vector.github.io/2025/01/24/Magic%20Bits%20Operation/</guid>
             <title>Magic Bits Operation</title>
