@@ -69,6 +69,7 @@ export default defineConfig<ThemeConfig>({
         theme: 'var(--hy-c-primary)',
       },
     }),
+    
     // Waline 评论系统
     // 请参考 https://waline.js.org/ 设置 serverURL 地址
     addonWaline({
