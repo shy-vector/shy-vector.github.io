@@ -1,5 +1,13 @@
 ---
 title: Dijkstra 算法正确性的证明
+date: 2024-09-20 21:55:41
+author: Shy_Vector
+tags:
+  - 算法
+  - Dijkstra
+sponsor: true
+copyright: true
+nav: true
 ---
 
 # Dijkstra 算法正确性的证明
@@ -37,11 +45,11 @@ $$
 >
 > 故$r'$的结点中除了终点$v \in T$，必然存在另一点$t \in T$．
 >
-> ![](./Dijkstra Proof_1.png)
+> ![](./Dijkstra_Proof_1.png)
 
 因此不妨设路径$r'$中**第一个**在$T$内的结点为$t$．
 
-![](./Dijkstra Proof_2.png)
+![](./Dijkstra_Proof_2.png)
 
 对于从$T$中**通过Dijkstra算法选出来的**结点$v$，有另一个非常重要的点：**所有在$T$内的结点中，$\mathrm{dis}(v)$最小**．因此
 $$

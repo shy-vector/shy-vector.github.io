@@ -1,5 +1,14 @@
 ---
 title: GSLA Chapter 1 Problem Set (Optional)
+date: 2024-10-5 23:25:38
+author: Shy_Vector
+tags:
+  - 数学
+  - 线性代数
+  - GSLA
+sponsor: true
+copyright: true
+nav: true
 ---
 
 # Chapter 1

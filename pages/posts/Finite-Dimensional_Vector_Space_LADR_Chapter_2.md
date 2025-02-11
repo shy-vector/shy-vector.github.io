@@ -1,5 +1,14 @@
 ---
 title: Finite-Dimensional Vector Space (LADR Chapter 2)
+date: 2025-02-09 02:09:00
+author: Shy_Vector
+tags:
+  - 数学
+  - 线性代数
+  - LADR
+sponsor: true
+copyright: true
+nav: true
 ---
 
 # 有限维向量空间

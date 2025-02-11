@@ -1,5 +1,14 @@
 ---
 title: Baby Number Theory
+date: 2024-12-03 00:25:00
+author: Shy_Vector
+tags:
+  - 数学
+  - 数论
+  - 算法
+sponsor: true
+copyright: true
+nav: true
 ---
 
 # 快速幂

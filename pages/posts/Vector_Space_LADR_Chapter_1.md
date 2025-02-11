@@ -1,5 +1,14 @@
 ---
 title: Vector Space (LADR Chapter 1)
+date: 2025-02-04 04:30:00
+author: Shy_Vector
+tags:
+  - 数学
+  - 线性代数
+  - LADR
+sponsor: true
+copyright: true
+nav: true
 ---
 
 # 向量空间

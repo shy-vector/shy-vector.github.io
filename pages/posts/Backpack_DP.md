@@ -1,5 +1,13 @@
 ---
 title: 背包DP
+date: 2024-11-26 23:45:00
+author: Shy_Vector
+tags:
+  - 算法
+  - 动态规划
+sponsor: true
+copyright: true
+nav: true
 ---
 
 # 背包DP

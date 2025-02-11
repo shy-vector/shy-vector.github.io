@@ -1,5 +1,13 @@
 ---
 title: Magic Bits Operation
+date: 2025-01-24 16:20:00
+author: Shy_Vector
+tags:
+  - 算法
+  - 位运算
+sponsor: true
+copyright: true
+nav: true
 ---
 
 # 异或
