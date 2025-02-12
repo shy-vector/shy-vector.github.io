@@ -10,9 +10,9 @@ copyright: true
 nav: true
 ---
 
-# 异或
+## 异或
 
-## 常识
+### 常识
 
 1. 自反律：$a \oplus  a = 0$，$a \oplus  0 = a$;
 
@@ -35,12 +35,11 @@ nav: true
    $$
    当 $n$ 为偶数时，$n \oplus  (n + 1) = 1$;
 
+### 例题
 
-## 例题
+#### 异或和
 
-### 异或和
-
-#### 原理
+##### 原理
 
 对于序列 $\{a_i\}$，$\{b_j\}$，$1 \le i \le m$，$1 \le j \le n$，求
 $$
@@ -58,9 +57,9 @@ $$
 $$
 c_{ij, k} = a_{i, k} \oplus b_{j, k}
 $$
-这里 $a_{i, k}$，$b_{j,k}$，$c_{ij,k}$ 要么是 $0$，要么是 $1$。因此从序列 $\{a_i\}$，$\{b_j\}$ 单独拎出比特位第 $k$ 位即可得到新序列 $\{a_{i, k}\}$，$\{b_{j, k}\}$ ，这些新序列其实都是 $01$ 序列。
+这里 $a_{i, k}$，$b_{j,k}$，$c_{ij,k}$ 要么是 $0$，要么是 $1$．因此从序列 $\{a_i\}$，$\{b_j\}$ 单独拎出比特位第 $k$ 位即可得到新序列 $\{a_{i, k}\}$，$\{b_{j, k}\}$ ，这些新序列其实都是 $01$ 序列．
 
-说是求两组数的异或和，其实要干这样一件事：**只单独看某一比特位，两组数都变成了 $01$ 序列，我们要求的是从这两个 $01$ 序列中分别取出一个比特，能组成 $(1, 0)$ 或者 $(0, 1)$ 对的方案数，最后将这个方案数安置在最终结果比特位第 $k$ 位上。**
+说是求两组数的异或和，其实要干这样一件事：**只单独看某一比特位，两组数都变成了 $01$ 序列，我们要求的是从这两个 $01$ 序列中分别取出一个比特，能组成 $(1, 0)$ 或者 $(0, 1)$ 对的方案数，最后将这个方案数安置在最终结果比特位第 $k$ 位上．**
 
 > 例如序列 $\{a_i\} = \{1, 2, \cdots, 10\}$，要求
 > $$
@@ -88,7 +87,7 @@ $$
 
 参考代码：
 
-``````c++
+```cpp
 #define int long long;
 constexpr int MAXB = 32;
 constexpr int MOD = 1e9 + 7;
@@ -102,7 +101,7 @@ int xor_sum(vector<int> &a, vector<int> &b, int n, int m) {
     auto _get = [](vector<int> arr, int L, int R) {
         return arr[R] - arr[L - 1];
     };
-	for (int k = 0; k < MAXB; k++) {
+  for (int k = 0; k < MAXB; k++) {
         for (int i = 1; i <= n; i++) {
             if ((a[i - 1] >> k) & 1) {
                 a1pre[k][i] = a1pre[k][i - 1] + 1;
@@ -147,9 +146,9 @@ int xor_sum(vector<int> &a, vector<int> &b, int n, int m) {
         cout << ans << endl;
     }
 }
-``````
+```
 
-# 其他
+## 其他
 
 1. $a \mid b = a \:\&\: b + a \oplus  b$;
 
@@ -158,4 +157,3 @@ int xor_sum(vector<int> &a, vector<int> &b, int n, int m) {
 3. $a + b = (a \oplus  b) + ((a \:\&\: b) \ll 1)$，
 
    $\left\lfloor\dfrac{a + b}{2}\right\rfloor = ((a \oplus  b) \gg1) + (a \:\&\: b)$;
-
