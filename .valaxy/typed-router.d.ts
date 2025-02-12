@@ -24,12 +24,10 @@ declare module 'vue-router/auto-routes' {
     '/about/': RouteRecordInfo<'/about/', '/about', Record<never, never>, Record<never, never>>,
     '/about/site': RouteRecordInfo<'/about/site', '/about/site', Record<never, never>, Record<never, never>>,
     '/archives/': RouteRecordInfo<'/archives/', '/archives', Record<never, never>, Record<never, never>>,
-    '/archives/[year]/': RouteRecordInfo<'/archives/[year]/', '/archives/:year', { year: ParamValue<true> }, { year: ParamValue<false> }>,
-    '/archives/[year]/[month]/': RouteRecordInfo<'/archives/[year]/[month]/', '/archives/:year/:month', { year: ParamValue<true>, month: ParamValue<true> }, { year: ParamValue<false>, month: ParamValue<false> }>,
     '/categories/': RouteRecordInfo<'/categories/', '/categories', Record<never, never>, Record<never, never>>,
-    '/categories/[...its]': RouteRecordInfo<'/categories/[...its]', '/categories/:its(.*)', { its: ParamValue<true> }, { its: ParamValue<false> }>,
     '/links/': RouteRecordInfo<'/links/', '/links', Record<never, never>, Record<never, never>>,
     '/page/[page]': RouteRecordInfo<'/page/[page]', '/page/:page', { page: ParamValue<true> }, { page: ParamValue<false> }>,
+    '/posts/': RouteRecordInfo<'/posts/', '/posts', Record<never, never>, Record<never, never>>,
     '/posts/Baby_Number_Theory': RouteRecordInfo<'/posts/Baby_Number_Theory', '/posts/Baby_Number_Theory', Record<never, never>, Record<never, never>>,
     '/posts/Backpack_DP': RouteRecordInfo<'/posts/Backpack_DP', '/posts/Backpack_DP', Record<never, never>, Record<never, never>>,
     '/posts/diff': RouteRecordInfo<'/posts/diff', '/posts/diff', Record<never, never>, Record<never, never>>,
@@ -41,6 +39,5 @@ declare module 'vue-router/auto-routes' {
     '/posts/Vector_Space_LADR_Chapter_1': RouteRecordInfo<'/posts/Vector_Space_LADR_Chapter_1', '/posts/Vector_Space_LADR_Chapter_1', Record<never, never>, Record<never, never>>,
     '/posts/XSCTF2024_PreRound_shy_vector_WriteUp': RouteRecordInfo<'/posts/XSCTF2024_PreRound_shy_vector_WriteUp', '/posts/XSCTF2024_PreRound_shy_vector_WriteUp', Record<never, never>, Record<never, never>>,
     '/tags/': RouteRecordInfo<'/tags/', '/tags', Record<never, never>, Record<never, never>>,
-    '/tags/[tag]/': RouteRecordInfo<'/tags/[tag]/', '/tags/:tag', { tag: ParamValue<true> }, { tag: ParamValue<false> }>,
   }
 }
