@@ -17,31 +17,31 @@
 //   themeConfig: {
 //     banner: {
 //       enable: true,
-//       title: '云游君的小站',
+//       title: '向量的小站',
 //     },
 
-//     pages: [
-//       {
-//         name: '我的小伙伴们',
-//         url: '/links/',
-//         icon: 'i-ri-genderless-line',
-//         color: 'dodgerblue',
-//       },
-//       {
-//         name: '喜欢的女孩子',
-//         url: '/girls/',
-//         icon: 'i-ri-women-line',
-//         color: 'hotpink',
-//       },
-//     ],
+//     // pages: [
+//     //   {
+//     //     name: '我的小伙伴们',
+//     //     url: '/links/',
+//     //     icon: 'i-ri-genderless-line',
+//     //     color: 'dodgerblue',
+//     //   },
+//     //   {
+//     //     name: '喜欢的女孩子',
+//     //     url: '/girls/',
+//     //     icon: 'i-ri-women-line',
+//     //     color: 'hotpink',
+//     //   },
+//     // ],
 
-//     footer: {
-//       since: 2016,
-//       beian: {
-//         enable: true,
-//         icp: '苏ICP备17038157号',
-//       },
-//     },
+//     // footer: {
+//     //   since: 2016,
+//     //   beian: {
+//     //     enable: true,
+//     //     icp: '苏ICP备17038157号',
+//     //   },
+//     // },
 //   },
 
 //   unocss: { safelist },
@@ -65,7 +65,7 @@ export default defineConfig<ThemeConfig>({
         // 设置网易云/qq或其他歌单ID
         id: '8261729315',
         type: 'playlist',
-        autoplay: true,
+        autoplay: false,
         theme: 'var(--hy-c-primary)',
       },
     }),

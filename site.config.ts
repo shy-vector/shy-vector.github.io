@@ -4,6 +4,7 @@ export default defineSiteConfig({
   url: '',
   lang: 'zh-CN',
   favicon: '⭐',
+  mode: 'dark',
   title: 'Shy_Vector\'s House',
   subtitle: 'Recording and Collecting',
   author: {

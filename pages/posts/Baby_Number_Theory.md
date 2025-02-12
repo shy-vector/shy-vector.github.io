@@ -1,5 +1,5 @@
 ---
-title: Baby Number Theory
+title: 简单数论
 date: 2024-12-03 00:25:00
 author: Shy_Vector
 tags:

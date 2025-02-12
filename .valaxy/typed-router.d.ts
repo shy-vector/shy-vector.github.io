@@ -32,6 +32,7 @@ declare module 'vue-router/auto-routes' {
     '/page/[page]': RouteRecordInfo<'/page/[page]', '/page/:page', { page: ParamValue<true> }, { page: ParamValue<false> }>,
     '/posts/Baby_Number_Theory': RouteRecordInfo<'/posts/Baby_Number_Theory', '/posts/Baby_Number_Theory', Record<never, never>, Record<never, never>>,
     '/posts/Backpack_DP': RouteRecordInfo<'/posts/Backpack_DP', '/posts/Backpack_DP', Record<never, never>, Record<never, never>>,
+    '/posts/diff': RouteRecordInfo<'/posts/diff', '/posts/diff', Record<never, never>, Record<never, never>>,
     '/posts/Dijkstra_Proof': RouteRecordInfo<'/posts/Dijkstra_Proof', '/posts/Dijkstra_Proof', Record<never, never>, Record<never, never>>,
     '/posts/Finite-Dimensional_Vector_Space_LADR_Chapter_2': RouteRecordInfo<'/posts/Finite-Dimensional_Vector_Space_LADR_Chapter_2', '/posts/Finite-Dimensional_Vector_Space_LADR_Chapter_2', Record<never, never>, Record<never, never>>,
     '/posts/GSLA_Chapter_1': RouteRecordInfo<'/posts/GSLA_Chapter_1', '/posts/GSLA_Chapter_1', Record<never, never>, Record<never, never>>,

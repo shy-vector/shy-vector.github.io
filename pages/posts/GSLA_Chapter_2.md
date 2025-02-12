@@ -47,7 +47,7 @@ $$
 
 |   The Row Picture of $A$    |  The Column Picture of $A$  |
 | :-------------------------: | :-------------------------: |
-| ![](./GSLA_Chapter_2_1.png) | ![](./GSLA_Chapter_2_2.png) |
+| ![](./GSLA_Chapter_2/GSLA_Chapter_2_1.png) | ![](./GSLA_Chapter_2/GSLA_Chapter_2_2.png) |
 ### Problem Set 2.2
 1. *What test on $b_1$ and $b_2$ decides whether these two equations allow a solution? How many solutions will they have? Draw the column picture for $\boldsymbol{b} = (1, 2)$ and $(1, 0)$.*
 $$
@@ -61,7 +61,7 @@ $$
 > **Solution**
 > Note that the second equation can be transformed into $3x - 2y = \frac{1}{2}b_2$, which is also equal to $b_1$. So these two equations allow infinitely many solutions when $2b_1 = b_2$, and allow no solution when $2b_1 \ne b_2$.
 >
-> ![](./GSLA_Chapter_2_3.png)
+> ![](./GSLA_Chapter_2/GSLA_Chapter_2_3.png)
 
 2. *Elimination in the usual order gives what matrix $U$ and what solution to this "lower triangular" system? We are really solving by forward substitution:*
 $$
