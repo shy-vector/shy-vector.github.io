@@ -10,6 +10,10 @@ copyright: true
 nav: true
 ---
 
+本文主要记录算法竞赛中简单的位运算知识，以及简单的理论支撑，包括但不限于：异或和。
+
+<!-- more -->
+
 ## 异或
 
 ### 常识
@@ -95,58 +99,58 @@ constexpr int MAXB = 32;
 constexpr int MOD = 1e9 + 7;
 
 int xor_sum(vector<int> &a, vector<int> &b, int n, int m) {
-    // 前缀优化
-    vector<vector<int>> a0pre(MAXB, vector<int>(n + 1));
-    vector<vector<int>> a1pre(MAXB, vector<int>(m + 1));
-    vector<vector<int>> b0pre(MAXB, vector<int>(n + 1));
-    vector<vector<int>> b1pre(MAXB, vector<int>(m + 1));
-    auto _get = [](vector<int> arr, int L, int R) {
-        return arr[R] - arr[L - 1];
-    };
+  // 前缀优化
+  vector<vector<int>> a0pre(MAXB, vector<int>(n + 1));
+  vector<vector<int>> a1pre(MAXB, vector<int>(m + 1));
+  vector<vector<int>> b0pre(MAXB, vector<int>(n + 1));
+  vector<vector<int>> b1pre(MAXB, vector<int>(m + 1));
+  auto _get = [](vector<int> &arr, int L, int R) {
+    return arr[R] - arr[L - 1];
+  };
   for (int k = 0; k < MAXB; k++) {
-        for (int i = 1; i <= n; i++) {
-            if ((a[i - 1] >> k) & 1) {
-                a1pre[k][i] = a1pre[k][i - 1] + 1;
-                a0pre[k][i] = a0pre[k][i - 1];
-            } else {
-                a0pre[k][i] = a0pre[k][i - 1] + 1;
-                a1pre[k][i] = a1pre[k][i - 1];
-            }
-        }
-        for (int j = 1; j <= m; j++) {
-            if ((b[j - 1] >> k) & 1) {
-                b1pre[k][i] = b1pre[k][i - 1] + 1;
-                b0pre[k][i] = b0pre[k][i - 1];
-            } else {
-                b0pre[k][i] = b0pre[k][i - 1] + 1;
-                b1pre[k][i] = b1pre[k][i - 1];
-            }
-        }
+    for (int i = 1; i <= n; i++) {
+      if ((a[i - 1] >> k) & 1) {
+        a1pre[k][i] = a1pre[k][i - 1] + 1; // 统计第 k 位是 1 的个数的前缀和
+        a0pre[k][i] = a0pre[k][i - 1];
+      } else {
+        a0pre[k][i] = a0pre[k][i - 1] + 1; // 统计第 k 位是 0 的个数的前缀和
+        a1pre[k][i] = a1pre[k][i - 1];
+      }
     }
-    // 多次查询
-    int q;
-    cin >> q;
-    while (q--) {
-        int aL, aR, bL, bR;
-        cin >> aL >> aR >> bL >> bR;
-        int ans = 0;
-        for (int k = 0; k < MAXB; k++) {
-            int tmp;
-            tmp = _get(a0pre[k], aL, aR) * _get(b1pre[k], bL, bR);
-            tmp %= MOD;
-            tmp <<= k; // 容易漏
-            tmp %= MOD;
-            ans += tmp;
-            ans %= MOD;
-            tmp = _get(a0pre[k], aL, aR) * _get(b1pre[k], bL, bR);
-            tmp %= MOD;
-            tmp <<= k; // 容易漏
-            tmp %= MOD;
-            ans += tmp;
-            ans %= MOD;
-        }
-        cout << ans << endl;
+    for (int j = 1; j <= m; j++) {
+      if ((b[j - 1] >> k) & 1) {
+        b1pre[k][i] = b1pre[k][i - 1] + 1;
+        b0pre[k][i] = b0pre[k][i - 1];
+      } else {
+        b0pre[k][i] = b0pre[k][i - 1] + 1;
+        b1pre[k][i] = b1pre[k][i - 1];
+      }
     }
+  }
+  // 多次查询
+  int q;
+  cin >> q;
+  while (q--) {
+    int aL, aR, bL, bR;
+    cin >> aL >> aR >> bL >> bR;
+    int ans = 0;
+    for (int k = 0; k < MAXB; k++) {
+      int tmp;
+      tmp = _get(a0pre[k], aL, aR) * _get(b1pre[k], bL, bR); // a, b 的第 k 位分别是 0, 1
+      tmp %= MOD;
+      tmp <<= k; // 容易漏
+      tmp %= MOD;
+      ans += tmp;
+      ans %= MOD;
+      tmp = _get(a1pre[k], aL, aR) * _get(b0pre[k], bL, bR); // a, b 的第 k 位分别是 1, 0
+      tmp %= MOD;
+      tmp <<= k; // 容易漏
+      tmp %= MOD;
+      ans += tmp;
+      ans %= MOD;
+    }
+    cout << ans << endl;
+  }
 }
 ```
 
