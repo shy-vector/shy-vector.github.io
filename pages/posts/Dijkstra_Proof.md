@@ -10,7 +10,7 @@ copyright: true
 nav: true
 ---
 
-Dijkstra 算法的核心思想是贪心，本文讲解它正确性的数学证明。
+Dijkstra 算法的核心思想是贪心，本文讲解它正确性的数学证明．
 
 <!-- more -->
 

@@ -10,13 +10,13 @@ copyright: true
 nav: true
 ---
 
-本文主要记录算法竞赛中简单的位运算知识，以及简单的理论支撑，包括但不限于：异或和。
+本文主要记录算法竞赛中简单的位运算知识．
 
 <!-- more -->
 
 ## 异或
 
-### 常识
+### 性质
 
 1. 自反律：$a \oplus  a = 0$，$a \oplus  0 = a$;
 
@@ -24,13 +24,20 @@ nav: true
 
 3. 结合律：$(a \oplus  b) \oplus  c = a \oplus  (b \oplus  c)$;
 
-4. “减法”即“加法”：
+4. ⭐ 三个对象 $a$，$b$，$a \oplus b$ 地位等价：
 
    $$
-   c = a \oplus b \quad \Leftrightarrow \quad a = c \oplus b \quad \Leftrightarrow \quad b = c \oplus  a
+   c = a \oplus b \quad \Leftrightarrow \quad a = c \oplus b \quad \Leftrightarrow \quad b = c \oplus a
    $$
 
-1. 下确界：$a \oplus  b \ge |a - b|$;
+5. ⭐ 加法 $\ge$ 异或：$a + b \ge a \oplus b$;
+
+   > 加法会**进位**，而异或不会，因此上式成立．\
+   > 何时取等？只要不进位就取等．\
+   > 由于三者地位等价，因此 $a \oplus b + b \ge a$，$a + a \oplus b \ge b$，故 $a \oplus b \ge |a - b|$，于是得到异或的大致范围：
+   > $$
+   > |a - b| \le a \oplus b \le a + b
+   > $$
 
 6. 相邻异或和：
 
@@ -39,11 +46,7 @@ nav: true
    $$
    当 $n$ 为偶数时，$n \oplus  (n + 1) = 1$;
 
-### 例题
-
-#### 异或和
-
-##### 原理
+### 异或和
 
 对于序列 $\{a_i\}$，$\{b_j\}$，$1 \le i \le m$，$1 \le j \le n$，求
 $$
@@ -154,12 +157,18 @@ int xor_sum(vector<int> &a, vector<int> &b, int n, int m) {
 }
 ```
 
+## 判定
+
+1. 判断是否为 $2$ 的幂：`x & (x - 1)`
+2. 截取第 $k$ 位是否为 $1$：`(x >> k) & 1`
+3. 树状数组中的 `lowbit(x)`：`x & -x`
+
 ## 其他
 
-1. $a \mid b = a \:\&\: b + a \oplus  b$;
+1. $a \mid b = a \:\&\: b + a \oplus  b$
 
-2. $a + b = a \mid b + a \:\&\:b$;
+2. $a + b = a \mid b + a \:\&\:b$
 
-3. $a + b = (a \oplus  b) + ((a \:\&\: b) \ll 1)$，
+3. $a + b = (a \oplus  b) + ((a \:\&\: b) \ll 1)$
 
-   $\left\lfloor\dfrac{a + b}{2}\right\rfloor = ((a \oplus  b) \gg1) + (a \:\&\: b)$;
+4. $\left\lfloor\dfrac{a + b}{2}\right\rfloor = ((a \oplus  b) \gg1) + (a \:\&\: b)$

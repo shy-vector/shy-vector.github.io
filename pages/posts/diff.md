@@ -11,7 +11,7 @@ copyright: true
 nav: true
 ---
 
-区间修改后单点查询非常适合使用差分处理，本文主要介绍差分的基本原理以及简单应用，讲解到三维差分和多重差分。
+区间修改后单点查询非常适合使用差分处理，本文主要介绍差分的基本原理以及简单应用，讲解到三维差分和多重差分．
 
 <!-- more -->
 
@@ -216,6 +216,7 @@ using atk = pair<field, int>;
 void solve() {
   int A, B, C, M;
   cin >> A >> B >> C >> M;
+  // 压维
   auto zip = [&](int i, int j, int k) -> int { return (i * B + j) * C + k; };
   auto unzip = [&](int zrd) -> coord { return (coord){zrd / C / B, zrd / C % B, zrd % C}; };
   auto hp = vector<int>((A + 2) * (B + 2) * (C + 2));
@@ -235,6 +236,7 @@ void solve() {
       auto &[p1, p2] = f;
       auto &[x1, y1, z1] = p1;
       auto &[x2, y2, z2] = p2;
+      // 曼哈顿距离为奇数的角是减，偶数的角是加
       d[zip(x1    , y1    , z1    )] += h;
       d[zip(x2 + 1, y1    , z1    )] -= h;
       d[zip(x1    , y2 + 1, z1    )] -= h;
@@ -244,6 +246,7 @@ void solve() {
       d[zip(x2 + 1, y2 + 1, z1    )] += h;
       d[zip(x2 + 1, y2 + 1, z2 + 1)] -= h;
     }
+    // 容斥原理，前缀和
     for (int i = 1; i <= A; i++) {
       for (int j = 1; j <= B; j++) {
         for (int k = 1; k <= C; k++) {
@@ -256,6 +259,7 @@ void solve() {
     }
     return false;
   };
+  // 二分答案（找前继）
   int L = 0, R = M - 1;
   while (L < R) {
     int mid = L + (R - L) / 2;
