@@ -83,6 +83,12 @@ $$
 > \mathcal{L}_\mathrm{MSE}=\frac{1}{2}\|\mathbf{a}^{(L)}-\mathbf{y}\|^2=\frac{1}{2}\sum_{i=1}^{n_L}(a_i^{(L)}-y_i)^2
 > $$
 >
+> 如果要 **正则化**（给予高边权值惩罚，防止过拟合），则
+>
+> $$
+> \mathcal{L}_\mathrm{MSE}=\frac{1}{2}\|\mathbf{a}^{(L)}-\mathbf{y}\|^2 + \frac{\lambda}{2} \sum_{l = 1}^{L}\sum_{i = 1}^{n_{L}}\sum_{j = 1}^{n_{L - 1}} W_{ij}^{(l)}
+> $$
+>
 > 在分类任务中，损失函数的值可以是 **交叉熵损失（Cross-Entropy Loss）**
 >
 > $$
@@ -170,7 +176,7 @@ $$
 总的来看，
 
 $$
-\begin{align*}\frac{\partial \mathcal L}{\partial \mathbf{W}^{(l)}} &= \boldsymbol\delta^{(l)}{\mathbf{a}^{(l - 1)}}^\top \\ \boldsymbol\delta^{(l)} &=({\mathbf{W}^{(l + 1)}}^\top \boldsymbol\delta^{(l + 1)}) \odot \sigma'(\mathbf{z}^{(l)}) \\ \boldsymbol\delta^{(l + 1)} &= ({\mathbf{W}^{(l + 2)}}^\top \boldsymbol\delta^{(l + 2)}) \odot \sigma'(\mathbf{z}^{(l + 1)}) \\ &\:\,\,\vdots \\ \boldsymbol\delta^{(L - 1)} &= ({\mathbf{W}^{(L)}}^\top \boldsymbol\delta^{(L)}) \odot \sigma'(\mathbf{z}^{(L - 1)}) \\ \boldsymbol\delta^{(L)} &= \frac{\partial \mathcal L}{\partial \mathbf{a}^{(L)}} \odot \sigma'(\mathbf{z}^{(L)})\end{align*}
+\begin{align*} \boldsymbol\delta^{(L)} &= \frac{\partial \mathcal L}{\partial \mathbf{a}^{(L)}} \odot \sigma'(\mathbf{z}^{(L)}) \\ \boldsymbol\delta^{(L - 1)} &= ({\mathbf{W}^{(L)}}^\top \boldsymbol\delta^{(L)}) \odot \sigma'(\mathbf{z}^{(L - 1)}) \\ &\:\,\,\vdots \\ \boldsymbol\delta^{(l + 1)} &= ({\mathbf{W}^{(l + 2)}}^\top \boldsymbol\delta^{(l + 2)}) \odot \sigma'(\mathbf{z}^{(l + 1)}) \\ \boldsymbol\delta^{(l)} &=({\mathbf{W}^{(l + 1)}}^\top \boldsymbol\delta^{(l + 1)}) \odot \sigma'(\mathbf{z}^{(l)}) \\ \frac{\partial \mathcal L}{\partial \mathbf{W}^{(l)}} &= \boldsymbol\delta^{(l)}{\mathbf{a}^{(l - 1)}}^\top\end{align*}
 $$
 
 这个误差项往回传的过程我们称为 **反向传播**．为了求取关于第 $l$ 层参数 $\mathbf{W}^{(l)}$ 的偏导数，我们需要此时的 $\mathbf{a}^{(l - 1)}$、$\mathbf{W}^{(l + 1)}, \mathbf{W}^{(l + 2)}, \cdots, \mathbf{W}^{(L)}$、$\mathbf{z}^{(l)}, \mathbf{z}^{(l + 1)}, \cdots \mathbf{z}^{(L)}$、$\frac{\partial \mathcal L}{\partial \mathbf{a}^{(L)}}$．
@@ -186,3 +192,18 @@ $$
 > $$
 > \sigma'(\cdot) = \sigma(\cdot)(1-\sigma(\cdot))
 > $$
+
+## 开始训练
+
+因此，对于含 $m$ 个样本的训练集 $\{(\mathbf{a}^{(0)}, \mathbf{y})\}$，我们的训练步骤如下：
+
+1. 为每个 $\mathbf{a}^{(0)}$ 添加前导 $1$，以免去后面对偏置项的特别处理；
+2. 初始化网络边权 $\mathbf{W}^{(l)} \gets \mathbf{O}$，
+3. 遍历样本 $(\mathbf{a}^{(0)}, \mathbf{y})$：
+   1. 前向传播：$\mathbf{z}^{(l)} \gets \mathbf{W}^{(l)}\mathbf{a}^{(l - 1)}$，$\mathbf{a}^{(l)} \gets \sigma(\mathbf{z}^{(l)})$，最后得到 $\mathbf{a}^{(L)}$；
+   2. （可选）累计损失函数：$\mathcal L \gets \mathcal L + \frac{1}{2m} \|\mathbf{a}^{(L)} - \mathbf{y}\|^2$；
+   3. 反向传播：
+      1. 输出层误差：$\boldsymbol\delta^{(L)} \gets \frac{\partial \mathcal L}{\partial \mathbf{a}^{(L)}} \odot \sigma'(\mathbf{z}^{(L)})$；
+      2. 隐层传播到第一层：到第 $l$ 层时，
+         1. 误差：$\boldsymbol\delta^{(l)} \gets ({\mathbf{W}^{(l + 1)}}^\top \boldsymbol\delta^{(l + 1)}) \odot \sigma'(\mathbf{z}^{(l)})$；
+         2. 网络：$\mathbf{W}^{(l)} \gets \mathbf{W}^{(l)} - \boldsymbol\delta^{(l)}{\mathbf{a}^{(l - 1)}}^\top$．

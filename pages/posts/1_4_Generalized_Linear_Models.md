@@ -136,7 +136,7 @@ $$
 正态分布可以写成指数形式
 
 $$
-\begin{align*} P(y \,|\, \mu) &= \frac{1}{\sqrt{ 2\pi }} \exp \left( -\frac{1}{2} (y - \mu)^2\right) \\ &= \frac{1}{\sqrt{ 2 \pi }} \exp \left(  \begin{bmatrix*} \mu & -\frac{1}{2} \end{bmatrix*}^\text{T} \begin{bmatrix*} y \\ y^2 \end{bmatrix*} - \frac{\mu^2}{2} \right)\end{align*}
+\begin{align*} P(y \,|\, \mu) &= \frac{1}{\sqrt{ 2\pi }} \exp \left( -\frac{1}{2} (y - \mu)^2\right) \\ &= \frac{1}{\sqrt{ 2 \pi }} \exp \left(  \begin{bmatrix*} \mu & -\frac{1}{2} \end{bmatrix*} \begin{bmatrix*} y \\ y^2 \end{bmatrix*} - \frac{\mu^2}{2} \right)\end{align*}
 $$
 
 由于预测的是期望，充分统计量中 $y$ 对应于 $\eta^\text{T}$ 的第一个元素 $\mu$，因此链接函数 $\eta = \mu$ 是恒等函数．
