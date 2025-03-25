@@ -83,10 +83,10 @@ $$
 > \mathcal{L}_\mathrm{MSE}=\frac{1}{2}\|\mathbf{a}^{(L)}-\mathbf{y}\|^2=\frac{1}{2}\sum_{i=1}^{n_L}(a_i^{(L)}-y_i)^2
 > $$
 >
-> 如果要 **正则化**（给予高边权值惩罚，防止过拟合），则
+> 如果要 **正则化**（以 L2 正则化为例，给予高边权值惩罚，防止过拟合），则
 >
 > $$
-> \mathcal{L}_\mathrm{MSE}=\frac{1}{2}\|\mathbf{a}^{(L)}-\mathbf{y}\|^2 + \frac{\lambda}{2} \sum_{l = 1}^{L}\sum_{i = 1}^{n_{L}}\sum_{j = 1}^{n_{L - 1}} W_{ij}^{(l)}
+> \begin{align*} \mathcal{L}_\mathrm{MSE}&=\frac{1}{2}\|\mathbf{a}^{(L)}-\mathbf{y}\|^2 + \frac{\lambda}{2} \sum_{l = 1}^{L}\sum_{i,j} {W_{ij}^{(l)}}^2 \\ &=\frac{1}{2}\|\mathbf{a}^{(L)}-\mathbf{y}\|^2 + \frac{\lambda}{2} \sum_{l = 1}^{L}\|\mathbf{W}^{(l)}\|^2 \end{align*}
 > $$
 >
 > 在分类任务中，损失函数的值可以是 **交叉熵损失（Cross-Entropy Loss）**
@@ -167,10 +167,15 @@ $$
 \frac{\partial \mathcal L}{\partial \mathbf{W}^{(l)}} = \boldsymbol\delta^{(l)}{\mathbf{a}^{(l - 1)}}^\top
 $$
 
-> 损失函数 $\mathcal L$ 关于第 $l$ 层偏置项 $\mathbf{b}^{(l)}$ 的偏导数
+损失函数 $\mathcal L$ 关于第 $l$ 层偏置项 $\mathbf{b}^{(l)}$ 的偏导数
+
+$$
+\frac{\partial \mathcal L}{\partial \mathbf{b}^{(l)}} = \left( \frac{\partial \mathbf{z}^{(l)}}{\partial \mathbf{b}^{(l)}} \right)^\top \frac{\partial \mathcal L}{\partial \mathbf{z}^{(l)}} = I^\top \boldsymbol\delta^{(l)} = \boldsymbol\delta^{(l)}
+$$
+
+> 如果实施 L2 正则化，则修正梯度
 >
-> $$
-> \frac{\partial \mathcal L}{\partial \mathbf{b}^{(l)}} = \left( \frac{\partial \mathbf{z}^{(l)}}{\partial \mathbf{b}^{(l)}} \right)^\top \frac{\partial \mathcal L}{\partial \mathbf{z}^{(l)}} = I^\top \boldsymbol\delta^{(l)} = \boldsymbol\delta^{(l)}
+> $$\frac{\partial \mathcal L}{\partial \mathbf{W}^{(l)}} = \boldsymbol\delta^{(l)}{\mathbf{a}^{(l - 1)}}^\top + \lambda \mathbf{W}^{(l)}
 > $$
 
 总的来看，
@@ -193,17 +198,33 @@ $$
 > \sigma'(\cdot) = \sigma(\cdot)(1-\sigma(\cdot))
 > $$
 
-## 开始训练
+## 批量训练
 
 因此，对于含 $m$ 个样本的训练集 $\{(\mathbf{a}^{(0)}, \mathbf{y})\}$，我们的训练步骤如下：
 
-1. 为每个 $\mathbf{a}^{(0)}$ 添加前导 $1$，以免去后面对偏置项的特别处理；
-2. 初始化网络边权 $\mathbf{W}^{(l)} \gets \mathbf{O}$，
-3. 遍历样本 $(\mathbf{a}^{(0)}, \mathbf{y})$：
-   1. 前向传播：$\mathbf{z}^{(l)} \gets \mathbf{W}^{(l)}\mathbf{a}^{(l - 1)}$，$\mathbf{a}^{(l)} \gets \sigma(\mathbf{z}^{(l)})$，最后得到 $\mathbf{a}^{(L)}$；
-   2. （可选）累计损失函数：$\mathcal L \gets \mathcal L + \frac{1}{2m} \|\mathbf{a}^{(L)} - \mathbf{y}\|^2$；
+1. 初始化网络边权 $\mathbf{W}^{(l)} \gets \mathbf{O}$，$\mathbf{b}^{(l)} \gets \mathbf{0}$；
+2. 每次迭代：
+   1. 初始化 $\mathcal L \gets 0$，遍历训练集所有样本，当遍历到样本 $(\mathbf{a}^{(0)}, \mathbf{y})$ 时，
+      1. 前向传播：$\mathbf{z}^{(l)} \gets \mathbf{W}^{(l)}\mathbf{a}^{(l - 1)} + \mathbf{b}^{(l)}$，$\mathbf{a}^{(l)} \gets \sigma(\mathbf{z}^{(l)})$；
+      2. 累计损失函数：$\mathcal L \gets \mathcal L + \frac{1}{2m} \|\mathbf{a}^{(L)} - \mathbf{y}\|^2$；
+   2. 添加正则项：$\mathcal L \gets \mathcal L + \frac{\lambda}{2}  \sum_{l} {\|\mathbf{W}^{(l)}\|}^2$；
    3. 反向传播：
       1. 输出层误差：$\boldsymbol\delta^{(L)} \gets \frac{\partial \mathcal L}{\partial \mathbf{a}^{(L)}} \odot \sigma'(\mathbf{z}^{(L)})$；
-      2. 隐层传播到第一层：到第 $l$ 层时，
+      2. 隐层传播到第一层：初始化 $\frac{\partial \mathcal L}{\partial \mathbf{W}^{(l)}} \gets \mathbf{O}$，$\frac{\partial \mathcal L}{\partial \mathbf{b}^{(l)}} \gets \mathbf{0}$，到第 $l$ 层时，
          1. 误差：$\boldsymbol\delta^{(l)} \gets ({\mathbf{W}^{(l + 1)}}^\top \boldsymbol\delta^{(l + 1)}) \odot \sigma'(\mathbf{z}^{(l)})$；
-         2. 网络：$\mathbf{W}^{(l)} \gets \mathbf{W}^{(l)} - \boldsymbol\delta^{(l)}{\mathbf{a}^{(l - 1)}}^\top$．
+         2. 梯度累计：$\frac{\partial \mathcal L}{\partial \mathbf{W}^{(l)}} \gets \frac{\partial \mathcal L}{\partial \mathbf{W}^{(l)}} + \frac{1}{m}\boldsymbol\delta^{(l)}{\mathbf{a}^{(l - 1)}}^\top$，$\frac{\partial \mathcal L}{\partial \mathbf{b}^{(l)}} \gets \frac{\partial \mathcal L}{\partial \mathbf{b}^{(l)}} + \frac{1}{m}\boldsymbol\delta^{(l)}$；
+         3. 添加正则项：$\frac{\partial \mathcal L}{\partial \mathbf{W}^{(l)}} \gets \frac{\partial \mathcal L}{\partial \mathbf{W}^{(l)}} + \lambda \mathbf{W}^{(l)}$；
+         4. 更新：$\mathbf{W}^{(l)} \gets \mathbf{W}^{(l)} - \alpha \frac{\partial \mathcal L}{\partial \mathbf{W}^{(l)}}$，$\mathbf{b}^{(l)} \gets \mathbf{b}^{(l)} - \alpha \frac{\partial \mathcal L}{\partial \mathbf{b}^{(l)}}$。
+
+我们也可以不显式遍历样本，把训练集里的所有样本合并成矩阵 $\mathbf{A}^{(0)}$ 和 $\mathbf{Y}$，整体进行传播，此时两个矩阵的形状是 $\mathbf{A}^{(0)} \in \mathbb{R}^{n_{0} \times m}$，$\mathbf{Y} \in \mathbb{R}^{n_{L} \times m}$，$\mathbf{A}$ 的每一列都是一个样本：
+
+1. 初始化网络边权 $\mathbf{W}^{(l)} \gets \mathbf{O}$，$\mathbf{b}^{(l)} \gets \mathbf{0}$；
+2. 每次迭代：
+   1. 前向传播：$\mathbf{Z}^{(l)} = \mathbf{W}^{(l)}\mathbf{A}^{(l - 1)} + \mathbf{b}^{(l)}$，$\mathbf{A}^{(l)} = \sigma(\mathbf{Z}^{(l)})$；（利用广播机制实现矩阵与向量相加，此时 $\mathbf{b}^{(l)}$ 沿列的方向（横向复制）被拓展成 $\mathbf{B}^{(l)} \in \mathbb{R}^{n_{l} \times m}$）
+   2. 损失函数：$\mathcal L \gets \frac{1}{2m} \|\mathbf{A}^{(L)} - \mathbf{Y}\|^2 + \frac{\lambda}{2}  \sum_{l} {\|\mathbf{W}^{(l)}\|}^2$；
+   3. 反向传播：
+      1. 输出层误差：$\boldsymbol\Delta^{(L)} \gets \frac{\partial \mathcal L}{\partial \mathbf{A}^{(L)}} \odot \sigma'(\mathbf{Z}^{(L)})$；
+      2. 隐层传播到第一层：到第 $l$ 层时，
+         1. 误差：$\boldsymbol\Delta^{(l)} \gets ({\mathbf{W}^{(l + 1)}}^\top \boldsymbol\Delta^{(l + 1)}) \odot \sigma'(\mathbf{Z}^{(l)})$；
+         2. 梯度：$\frac{\partial \mathcal L}{\partial \mathbf{W}^{(l)}} = \frac{1}{m}\boldsymbol\Delta^{(l)}{\mathbf{A}^{(l - 1)}}^\top + \lambda\mathbf{W}^{(l)}$，$\frac{\partial \mathcal L}{\partial \mathbf{b}^{(l)}} = \frac{1}{m}\mathbf{\Delta}^{(l)}\mathbf{1}_{m}$，其中 $\mathbf{1}_{m}$ 为全 1 向量，用于对 $\mathbf{\Delta}^{(l)}$ 横向取平均值；
+         3. 更新：$\mathbf{W}^{(l)} \gets \mathbf{W}^{(l)} - \alpha \frac{\partial \mathcal L}{\partial \mathbf{W}^{(l)}}$，$\mathbf{b}^{(l)} \gets \mathbf{b}^{(l)} - \alpha \frac{\partial \mathcal L}{\partial \mathbf{b}^{(l)}}$。
