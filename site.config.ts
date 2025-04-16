@@ -98,10 +98,10 @@ export default defineSiteConfig({
     // },
   ],
   mediumZoom: { enable: true },
-  // search: {
-  //   enable: true,
-  //   type: 'algolia',
-  // },
+  search: {
+    enable: true,
+    type: 'algolia',
+  },
   statistics: { enable: true },
   sponsor: {
     enable: true,
