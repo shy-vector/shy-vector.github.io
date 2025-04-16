@@ -1,12 +1,11 @@
 ---
-title: 线段树 - 多 Tag 优先级问题
+title: 线段树 - 多 Tag 下放的优先级问题
 date: 2025-04-16 1:14:51
 author: Shy_Vector
 tags:
   - 算法
   - 数据结构
   - 线段树
-  - Tag
 sponsor: true
 copyright: true
 nav: true
@@ -21,47 +20,67 @@ Tag 是**线段树**实现区间修改的重要技巧，它能够延迟更新子
 先回顾下单 Tag 的情况：
 
 > 能对区间 $[L, R)$ 进行以下操作：\
-> $T_1$：将每个数乘上 $k$\
-> $Q_1$：查询区间平方和
+> $T_1$：将区间里每个数加上 $b$；\
+> $Q_1$：查询区间平方和．
 
-Info 和 Tag 的设计十分简单：
+区间信息 Info 设计不难，只需维护区间和与区间平方和即可．
+
+> Info 和 Tag 的设计是相辅相成的，这在后面会充分体现．\
+> 在这里，可以先试试直接对每个数加上 $b$ 后，看看区间平方和的形式发生了什么变化：
+>
+> $$
+> \sum (x_i + b)^2 = \sum x_i^2 + 2b \sum x_i + (R - L + 1)b^2
+> $$
+>
+> 可以看到，我们必须要实时维护区间信息 $\sum x_i^2$ 和 $\sum x_i$，才能够实时更新区间平方和信息，因此 Info 必须被设计成能够维护区间和与区间平方和的形式．此时
+>
+> $$
+> \sum (x_i + b) = \sum x_i + (R - L + 1)b
+> $$
+>
+> 当然设计 Info 的时候也需要注意，只有满足 **结合律** 和 **封闭性** 的统计量才能够用线段树维护：最值、区间和、最大公约数等．
+
+区间修改信息 Tag 设计十分简单． 因为只有一种修改操作 $T_1$，Tag 的合并轻而易举．
 
 ```cpp
 using i64 = long long;
 constexpr i64 MOD = 1e9 + 7;
 
-template <typename T>
-class SegmentTree {
-  private:
-  // 自定义想要对区间的操作
-  struct Tag {
-    i64 mul;
-    Tag() : mul(1LL) {} // 单位元
-    Tag(i64 _mul) : mul(_mul) {}
-    // 合并 Tag
-    void apply(const Tag &o) {
-      mul = mul * o.mul % MOD;
-    }
-  };
+struct Tag {
+  i64 add;
+  Tag() : add(0LL) {} // 恒等元
+  Tag(i64 add) : add(add) {}
 
-  struct Info {
-    i64 sq_sum;
-    Info() : sq_sum(0LL) {} // 与目标区间无交集
-    Info(const T &single) : sq_sum(single * single % MOD) {} // 叶子节点
-    Info(i64 _sq_sum) : sq_sum(_sq_sum) {}
-
-    // 合并区间信息
-    Info operator+(const Info &o) {
-      return Info((sq_sum + o.sq_sum) % MOD);
-    }
-    // 使用 Tag 修改区间信息
-    void apply(const Tag &t, int len) {
-      sq_sum = sq_sum * t.mul % MOD * t.mul % MOD;
-    }
-  };
-
-  // ...
+  void apply(Tag t) { // Tag 合并
+    add += t.add;
+    add %= MOD;
+  }
 };
+
+struct Info {
+  i64 sum, sq_sum;
+  Info() : sum(0LL), sq_sum(0LL) {} // 非目标区域
+  Info(i64 leaf) : sq_sum(leaf) {} // 叶节点初始化 Info
+  Info operator+(const Info &o) { return Info(sq_sum + o.sq_sum); }
+
+  void apply(Tag t, int l, int r) { // Tag 作用于 Info
+    i64 b = t.add;
+
+    i64 new_sq_sum = 0LL;
+    new_sq_sum += sq_sum;
+    new_sq_sum += (2 * b * sum) % MOD;
+    new_sq_sum %= MOD;
+    new_sq_sum += (R - L + 1) * b % MOD * b % MOD;
+    new_sq_sum %= MOD;
+
+    i64 new_sum = (sum + (R - L + 1) * b % MOD) % MOD;
+
+    sq_sum = new_sq_sum, sum = new_sum;
+  }
+};
+
 ```
 
 ## 多 Tag - 不存在相同优先级的 Tag
+
+未完待续...
