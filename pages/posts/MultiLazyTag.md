@@ -90,15 +90,15 @@ struct Info {
 
 ## 多 Tag
 
-### 优先级不同的情形
+### 加、乘、赋值
 
 现在我们有了多种修改操作：
 
 > 给定一个长度为 $n$ 的序列 $a$，要求支持如下四个操作：\
-> $T_1$: 将区间 $[l, r]$ 内每个数都加上 $b$；\
-> $T_2$: 将区间 $[l, r]$ 内每个数都乘上 $k$；\
-> $T_3$: 将区间 $[l, r]$ 内每个数都赋值 $c$；\
-> $Q_1$: 求区间 $[l, r]$ 的立方和．
+> $T_1$：将区间 $[l, r]$ 内每个数都加上 $b$；\
+> $T_2$：将区间 $[l, r]$ 内每个数都乘上 $k$；\
+> $T_3$：将区间 $[l, r]$ 内每个数都赋值 $c$；\
+> $Q_1$：求区间 $[l, r]$ 的立方和．
 
 我们设计的 Tag 存着有关修改操作的信息，这个信息可以用四元组 $(b, k, c, \text{flag})$ 表示（其中 $\text{flag}$ 表示是否进行赋值操作），但这个形式并没有 **操作顺序** 这个信息，难道我们还要定义一个量用来明确先后吗？大可不必．
 
@@ -184,12 +184,9 @@ struct Info {
   i64 S, S2, S3;
   Info() : S(0LL), S2(0LL), S3(0LL) {} // 与目标区域无交集
   Info(i64 leaf) : S(leaf), S2(leaf * leaf % MOD), S3(leaf * leaf % MOD * leaf % MOD) {} // 叶节点初始化 Info
+  Info(i64 S, i64 S2, i64 S3) : S(S), S2(S2), S3(S3) {}
   Info operator+(const Info &o) { // 区间 Info 合并
-    Info res;
-    res.S = S + o.S;
-    res.S2 = S2 + o.S2;
-    res.S3 = S3 + o.S3;
-    return res;
+    return Info(S + o.S, S2 + o.S2, S3 + o.S3);
   }
 
   void apply(Tag t, int l, int r) { // Tag 作用于 Info
@@ -224,6 +221,123 @@ struct Info {
 
       S = nS, S2 = nS2, S3 = nS3;
     }
+  }
+};
+
+```
+
+### 加、乘、轮换
+
+> 给你 $n$ 个三元组 $(x, y, z)$，进行若干次如下操作：\
+> $T_1$：对 $[l, r]$ 内的所有三元组都加上 $(a, b, c)$；\
+> $T_2$：对 $[l, r]$ 内的所有三元组都乘上 $k$；\
+> $T_3$：对 $[l, r]$ 内的所有三元组 $(x, y, z)$ 置换成 $(y, z, x)$；\
+> $Q_1$：查询 $[l, r]$ 内的所有三元组和的模。
+
+如何叠加 Tag？首先乘的优先级比加高，因此只需要考虑轮换相对于这两种操作的优先级。
+
+直观上讲，轮换对其他操作的影响程度更大（赋值影响程度更大），我们先试试这个优先级：置换 $>$ 乘法 $>$ 加法。设三元组 $\mathbf{x} = (x, y, z)$，加法操作数 $\mathbf{b} = (a, b, c)$，记置换操作为 $\text{rot}\,\mathbf{x}$。
+
+我们初步定义 $\text{Tag}_{k, \mathbf{b}}\, \mathbf{x} = k\,\text{rot}\,\mathbf{x} + \mathbf{b}$，那么 Tag 合并时：
+
+$$
+\begin{align*}
+& \text{Tag}_{k_2, \mathbf{b}_2}\text{Tag}_{k_1, \mathbf{b}_1} \mathbf{x} \\
+=\,& k_2\,\text{rot}(k_1\,\text{rot}\,\mathbf{x} + \mathbf{b}_1) + \mathbf{b}_2 \\
+=\,& k_2(k_1\,\text{rot}^2\,\mathbf{x} + \text{rot}\,\mathbf{b}_1) + \mathbf{b}_2 \\
+=\,& (k_2k_1)\,\text{rot}^2\,\mathbf{x} + (k_2\,\text{rot}\,\mathbf{b}_1 + \mathbf{b}_2)
+\end{align*}
+$$
+
+没法重新合并成一个 Tag。观察形式，我们需要把 Tag 重新定义成 $\text{Tag}_{t, k, \mathbf{b}} = k\,\text{rot}^t\,\mathbf{x} + \mathbf{b}$，$t \in \{0, 1, 2\}$，重新推导 Tag 合并：
+
+$$
+\begin{align*}
+& \text{Tag}_{t_2, k_2, \mathbf{b}_2}\text{Tag}_{t_1, k_1, \mathbf{b}_1}\,\mathbf{x} \\
+=\,& k_2\,\text{rot}^{t_2}(k_1\,\text{rot}^{t_1}\,\mathbf{x} + \mathbf{b}_1) + \mathbf{b}_2 \\
+=\,& k_2(k_1\,\text{rot}^{t_2 + t_1}\,\mathbf{x} + \text{rot}^{t_2}\,\mathbf{b}_1) + \mathbf{b}_2 \\
+=\,& (k_2k_1)\,\text{rot}^{(t_2 + t_1) \:\text{mod}\: 3}\,\mathbf{x} + (k_2\,\text{rot}^{t_2 \:\text{mod}\: 3}\,\mathbf{b}_1 + \mathbf{b}_2) \\
+=\,& \text{Tag}_{t, k, \mathbf{b}}\,\mathbf{x}
+\end{align*}
+$$
+
+合并成功，此时 Tag 的合并为：
+
+$$
+\begin{align*}
+t &= (t_1 + t_2) \:\text{mod}\:3 \\
+k &= k_2k_1 \\
+\mathbf{b} &= k_2\,\text{rot}^{t_2 \:\text{mod}\: 3}\,\mathbf{b}_1 + \mathbf{b}_2
+\end{align*}
+$$
+
+到设计 Info 的时候了，我们需要维护区间所有三元组的和，才能获得模。
+
+当 $\text{Tag}_{t, k, \mathbf{b}}$ 作用于区间时，区间内所有三元组的和
+
+$$
+\sum (k\,\text{rot}^t\,\mathbf{x} + \mathbf{b}) = k\,\text{rot}^t\sum \mathbf{x} + (r - l + 1) \mathbf{b}
+$$
+
+看来不需要额外维护其它量，搞定收工！
+
+```cpp
+using i64 = long long;
+constexpr i64 MOD = 1e9 + 7;
+
+struct Vec {
+  std::array<i64, 3> v;
+  Vec() : v() {}
+  Vec(const Vec &o) : v(o.v) {}
+  Vec(i64 x, i64 y, i64 z) : v({x % MOD, y % MOD, z % MOD}) {}
+
+  Vec operator+(const Vec &o) {
+    return Vec((v[0] + o.v[0]) % MOD,
+               (v[1] + o.v[1]) % MOD,
+               (v[2] + o.v[2]) % MOD);
+  }
+
+  Vec operator*(i64 k) {
+    return Vec(v[0] * k % MOD,
+               v[1] * k % MOD,
+               v[2] * k % MOD);
+  }
+
+  Vec rot(int t) {
+    return Vec(v[t % 3], v[(t + 1) % 3], v[(t + 2) % 3]);
+  }
+};
+
+struct Tag {
+  int t;
+  i64 k;
+  Vec b;
+  Tag() : t(0), k(1LL), b() {} // 恒等元
+  Tag(int t, i64 k, Vec b) : c(c), k(k), b(b) {}
+
+  void apply(Tag _t) { // Tag 合并
+    int t2 = _t.t;
+    i64 k2 = _t.k;
+    Vec b2 = _t.b;
+    t = (t + t2) % 3;
+    k = k * k2 % MOD;
+    b = b.rot(t2 % 3) * k2 + b2;
+  }
+};
+
+struct Info {
+  Vec S;
+  Info() : S() {} // 与目标区域无交集
+  Info(Vec leaf) : S(leaf) {} // 叶节点初始化 Info
+  Info operator+(const Info &o) { // 区间 Info 合并
+    return Info(S + o.S);
+  }
+
+  void apply(Tag _t, int l, int r) { // Tag 作用于 Info
+    int t = _t.t;
+    i64 k = _t.k;
+    Vec b = _t.b;
+    S = S.rot(t) * k + b * (r - l + 1LL);
   }
 };
 
