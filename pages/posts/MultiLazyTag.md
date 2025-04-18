@@ -232,11 +232,11 @@ struct Info {
 > $T_1$：对 $[l, r]$ 内的所有三元组都加上 $(a, b, c)$；\
 > $T_2$：对 $[l, r]$ 内的所有三元组都乘上 $k$；\
 > $T_3$：对 $[l, r]$ 内的所有三元组 $(x, y, z)$ 置换成 $(y, z, x)$；\
-> $Q_1$：查询 $[l, r]$ 内的所有三元组和的模。
+> $Q_1$：查询 $[l, r]$ 内的所有三元组和的模．
 
-如何叠加 Tag？首先乘的优先级比加高，因此只需要考虑轮换相对于这两种操作的优先级。
+如何叠加 Tag？首先乘的优先级比加高，因此只需要考虑轮换相对于这两种操作的优先级．
 
-直观上讲，轮换对其他操作的影响程度更大（赋值影响程度更大），我们先试试这个优先级：置换 $>$ 乘法 $>$ 加法。设三元组 $\mathbf{x} = (x, y, z)$，加法操作数 $\mathbf{b} = (a, b, c)$，记置换操作为 $\text{rot}\,\mathbf{x}$。
+直观上讲，轮换对其他操作的影响程度更大（赋值影响程度更大），我们先试试这个优先级：置换 $>$ 乘法 $>$ 加法．设三元组 $\mathbf{x} = (x, y, z)$，加法操作数 $\mathbf{b} = (a, b, c)$，记置换操作为 $\text{rot}\,\mathbf{x}$．
 
 我们初步定义 $\text{Tag}_{k, \mathbf{b}}\, \mathbf{x} = k\,\text{rot}\,\mathbf{x} + \mathbf{b}$，那么 Tag 合并时：
 
@@ -249,7 +249,7 @@ $$
 \end{align*}
 $$
 
-没法重新合并成一个 Tag。观察形式，我们需要把 Tag 重新定义成 $\text{Tag}_{t, k, \mathbf{b}} = k\,\text{rot}^t\,\mathbf{x} + \mathbf{b}$，$t \in \{0, 1, 2\}$，重新推导 Tag 合并：
+没法重新合并成一个 Tag．观察形式，我们需要把 Tag 重新定义成 $\text{Tag}_{t, k, \mathbf{b}} = k\,\text{rot}^t\,\mathbf{x} + \mathbf{b}$，$t \in \{0, 1, 2\}$，重新推导 Tag 合并：
 
 $$
 \begin{align*}
@@ -271,7 +271,7 @@ k &= k_2k_1 \\
 \end{align*}
 $$
 
-到设计 Info 的时候了，我们需要维护区间所有三元组的和，才能获得模。
+到设计 Info 的时候了，我们需要维护区间所有三元组的和，才能获得模．
 
 当 $\text{Tag}_{t, k, \mathbf{b}}$ 作用于区间时，区间内所有三元组的和
 
@@ -343,4 +343,32 @@ struct Info {
 
 ```
 
-未完待续...
+### 加、置换、线性变换
+
+> 给你 $n$ 个二元组 $(x, y)$，进行若干次如下操作：\
+> $T_1$：对 $[l, r]$ 内的所有二元组都加上 $(b, b)$；\
+> $T_2$：对 $[l, r]$ 内的所有二元组都变成 $(y, x)$；\
+> $T_3$：对 $[l, r]$ 内的所有二元组都变成 $(3x + 2y, 3x - 2y)$；\
+> $Q_1$：查询 $[l, r]$ 内的 $\sum_i x_iy_i$．
+
+设 $A = \begin{bmatrix} 3 & 2 \\ 3 & -2 \end{bmatrix}$，$\mathbf{b} = \begin{bmatrix} b \\ b \end{bmatrix}$，$\text{swap}\begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} y \\ x \end{bmatrix}$，不管你凭直觉规定的优先级是什么，你可能在合并 Tag 的时候写出类似下面这个式子：
+
+$$
+\begin{align*}
+& A\,\text{swap}(A\,\text{swap}\,\mathbf{x} + \mathbf{b}_1) + \mathbf{b}_2 \\
+=& A^2\mathbf{x} + (A\,\text{swap}\,\mathbf{b}_1 + \mathbf{b}_2)
+\end{align*}
+$$
+
+发现无法合并，你可能会重新定义 $\text{Tag}_{n, t, b}\,\mathbf{x} = A^{n}\,\text{swap}^t\,\mathbf{x} + \mathbf{b}$，但会像之前的例子，很麻烦．
+
+实际上在规定优先级的时候，我们发现：$T_1$ 不会影响之前 $T_2$ 和 $T_3$ 的操作，但 $T_2$ 和 $T_3$ 在时间维度上，会互相影响，它们是相同的优先级，因为它们都是线性变换，我们可以统一用矩阵来表示这种线性变换，这样我们就不需要单独给这两种操作设计不同的 Tag．任何线性变换都可以看成同一类操作，只需要在构造 Tag 的时候，传进不同的矩阵罢了．
+
+我们定义 $\text{Tag}_{A, \mathbf{b}} = A\mathbf{x} + \mathbf{b}$，其中 $A$ 为任意矩阵，这样 $T_2$ 和 $T_3$ 都归为一类操作了，区间修改的时候构造矩阵
+
+$$
+T_2 = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix} \quad
+T_3 = \begin{bmatrix} 3 & 2 \\ 3 & -2 \end{bmatrix}
+$$
+
+作为 Tag 的构造参数就行，代码略．
